@@ -465,7 +465,7 @@ body.dark-mode .sb-user-role {
 /* Mobile responsive adjustments */
 @media (max-width: 480px) {
   .sb-sidebar {
-    width: 75%; /* Changed from 100% to 75% */
+    width: 60%; /* Changed from 100% to 60% */
     max-width: 75%; /* Changed from 100% to 75% */
     border-right: none;
     box-shadow: 2px 0 8px rgba(0, 0, 0, 0.1); /* Add shadow always */
