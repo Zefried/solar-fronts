@@ -4,7 +4,7 @@ import SidebarItems from '../SidebarItems/SidebarItems';
 
 
 const SidebarNew = ({ isOpen }) => {
-  const [isUsersOpen, setIsUsersOpen] = useState(false);
+
   
   return (
     <div className={`sb-sidebar ${isOpen ? 'sb-open' : ''}`}>
@@ -15,9 +15,9 @@ const SidebarNew = ({ isOpen }) => {
         </div>
       </div>
 
-      <SidebarItems isUsersOpen={isUsersOpen} setIsUsersOpen={setIsUsersOpen} />
+      <SidebarItems />
 
-     
+      
       <div className="sb-sidebar-footer">
         <div className="sb-user-profile">
           <div className="sb-user-avatar">JD</div>
