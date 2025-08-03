@@ -8,7 +8,7 @@ const AdminLogin = () => {
   const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
-    email: '',
+    phone: '',
     password: ''
   });
 
@@ -22,24 +22,22 @@ const AdminLogin = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post('/api/auth-resource', {
+      const res = await axios.post('/api/admin-login', {
         type: 'login',
         ...formData
       });
 
-      if (res.data.status == 200) {
-        // alert('Login successful');
-        let userName = res.data.data.user.name;
-        let token = res.data.data.token;
-      
-        AuthAction.updateState({
-          isAuthenticated:true,
-          name:userName,
-          token:token
-        })
+      if (res.data.status === 200) {
+        const userName = res.data.data.userData.name;
+        const token = res.data.data.loginData.access_token;
 
-          navigate('/admin');
-    
+        AuthAction.updateState({
+          isAuthenticated: true,
+          name: userName,
+          token: token
+        });
+
+        navigate('/admin');
       } else {
         alert(res.data.message || 'Login failed');
       }
@@ -58,14 +56,14 @@ const AdminLogin = () => {
 
         <form onSubmit={handleSubmit} className="auth-form">
           <div className="form-group">
-            <label htmlFor="email">Email</label>
+            <label htmlFor="phone">Phone Number</label>
             <input
-              type="email"
-              id="email"
-              name="email"
-              value={formData.email}
+              type="tel"
+              id="phone"
+              name="phone"
+              value={formData.phone}
               onChange={handleChange}
-              placeholder="Enter your email"
+              placeholder="Enter your phone number"
               required
             />
           </div>
@@ -88,7 +86,6 @@ const AdminLogin = () => {
               <input type="checkbox" id="remember" />
               <label htmlFor="remember">Remember me</label>
             </div>
-            {/* <Link to="/forgot-password" className="forgot-password">Forgot password?</Link> */}
           </div>
 
           <button type="submit" className="auth-button">Login</button>
