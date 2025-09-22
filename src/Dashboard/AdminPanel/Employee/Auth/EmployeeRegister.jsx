@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import './AdminAuth.css';
+import '../../Compo/Auth/AdminAuth.css';
 import { AuthAction } from '../../../../CustomStateManage/OrgUnits/AuthState';
 
-const AdminRegister = () => {
+const EmployeeRegister = () => {
   const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
@@ -21,7 +21,6 @@ const AdminRegister = () => {
       ...formData,
       [e.target.name]: e.target.value
     });
-    // Clear the specific error when user types in the field
     if (errors[e.target.name]) {
       setErrors({
         ...errors,
@@ -36,7 +35,7 @@ const AdminRegister = () => {
     setErrors({});
 
     try {
-      const res = await axios.post('/api/admin/register', {
+      const res = await axios.post('/api/employee/register', {
         type: 'register',
         ...formData
       });
@@ -48,7 +47,7 @@ const AdminRegister = () => {
           name: res.data.data?.name,
           token: res.data.token
         });
-        navigate('/admin');
+        navigate('/employee');
         return;
       }
 
@@ -66,14 +65,12 @@ const AdminRegister = () => {
     }
   };
 
-
-
   return (
     <div className="auth-container">
       <div className="auth-card">
         <div className="auth-header">
-          <h2>Admin Registration</h2>
-          <p>Create your admin account</p>
+          <h2>Employee Registration</h2>
+          <p>Create your employee account</p>
         </div>
 
         <form onSubmit={handleSubmit} className="auth-form">
@@ -144,4 +141,4 @@ const AdminRegister = () => {
   );
 };
 
-export default AdminRegister;
+export default EmployeeRegister;

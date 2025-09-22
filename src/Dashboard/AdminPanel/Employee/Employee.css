@@ -1,0 +1,431 @@
+/* Employee Page Styles */
+.employee-container {
+  font-family: -apple-system, BlinkMacSystemFont, 'San Francisco', 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+  padding: 24px;
+  max-width: 100%;
+  margin: 0 auto;
+  color: #212b36;
+  background-color: #f9fafb;
+  min-height: 100vh;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Dark mode styles */
+body.dark-mode .employee-container {
+  color: #f9fafb;
+  background-color: #1a1a1a;
+}
+
+.employee-header {
+  margin-bottom: 32px;
+}
+
+.employee-header h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #212b36;
+  margin: 0 0 8px;
+  transition: color 0.3s ease;
+}
+
+body.dark-mode .employee-header h1 {
+  color: #f9fafb;
+}
+
+.employee-header p {
+  font-size: 1rem;
+  color: #637188;
+  margin: 0;
+  transition: color 0.3s ease;
+}
+
+body.dark-mode .employee-header p {
+  color: #9ca3af;
+}
+
+/* Employee Controls */
+.employee-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.employee-actions {
+  display: flex;
+  gap: 12px;
+}
+
+.add-employee-button {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  background-color: #4b5563;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.add-employee-button:hover {
+  background-color: #6b7280;
+}
+
+.search-box {
+  display: flex;
+  align-items: center;
+  background-color: #ffffff;
+  border: 1px solid #dfe3e8;
+  border-radius: 6px;
+  overflow: hidden;
+  transition: border-color 0.2s ease;
+  width: 300px;
+}
+
+body.dark-mode .search-box {
+  background-color: #2d2d2d;
+  border-color: #444444;
+}
+
+.search-box:focus-within {
+  border-color: #4b5563;
+}
+
+.search-box input {
+  border: none;
+  outline: none;
+  padding: 8px 12px;
+  font-size: 14px;
+  color: #212b36;
+  background-color: transparent;
+  width: 100%;
+}
+
+body.dark-mode .search-box input {
+  color: #f9fafb;
+}
+
+.search-box input::placeholder {
+  color: #919eab;
+}
+
+body.dark-mode .search-box input::placeholder {
+  color: #6b7280;
+}
+
+.search-button {
+  background: none;
+  border: none;
+  padding: 8px;
+  cursor: pointer;
+  color: #637188;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+body.dark-mode .search-button {
+  color: #9ca3af;
+}
+
+/* Employee Table */
+.employee-table-container {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  overflow: hidden;
+  margin-bottom: 24px;
+  transition: background-color 0.3s ease;
+}
+
+body.dark-mode .employee-table-container {
+  background: #2d2d2d;
+}
+
+.employee-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.employee-table th {
+  text-align: left;
+  padding: 16px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #637188;
+  border-bottom: 1px solid #f4f6f8;
+  background-color: #f9fafb;
+  transition: color 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
+}
+
+body.dark-mode .employee-table th {
+  color: #9ca3af;
+  background-color: #1f2937;
+  border-bottom-color: #444444;
+}
+
+.employee-table td {
+  padding: 16px;
+  font-size: 14px;
+  color: #212b36;
+  border-bottom: 1px solid #f4f6f8;
+  transition: color 0.3s ease, border-color 0.3s ease;
+}
+
+body.dark-mode .employee-table td {
+  color: #e5e7eb;
+  border-bottom-color: #444444;
+}
+
+.employee-table tr:last-child td {
+  border-bottom: none;
+}
+
+.employee-table tr:hover td {
+  background-color: #f9fafb;
+}
+
+body.dark-mode .employee-table tr:hover td {
+  background-color: #1f2937;
+}
+
+.employee-name {
+  font-weight: 500;
+}
+
+/* Status Badge */
+.status-badge {
+  display: inline-block;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.status-active {
+  background-color: #e3f1df;
+  color: #108043;
+}
+
+body.dark-mode .status-active {
+  background-color: #1a3a28;
+  color: #34d399;
+}
+
+.status-leave {
+  background-color: #fff8e6;
+  color: #b86c00;
+}
+
+body.dark-mode .status-leave {
+  background-color: #3a2f1a;
+  color: #fbbf24;
+}
+
+.status-inactive {
+  background-color: #fcefef;
+  color: #de3618;
+}
+
+body.dark-mode .status-inactive {
+  background-color: #4b1a1a;
+  color: #f87171;
+}
+
+/* Action Buttons */
+.action-buttons {
+  display: flex;
+  gap: 8px;
+}
+
+.action-button {
+  width: 32px;
+  height: 32px;
+  border-radius: 4px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s ease;
+}
+
+.view-button {
+  color: #4b5563;
+}
+
+.view-button:hover {
+  background-color: #f4f6f8;
+}
+
+body.dark-mode .view-button:hover {
+  background-color: #3a3a3a;
+}
+
+.edit-button {
+  color: #4b5563;
+}
+
+.edit-button:hover {
+  background-color: #f4f6f8;
+}
+
+body.dark-mode .edit-button:hover {
+  background-color: #3a3a3a;
+}
+
+.delete-button {
+  color: #de3618;
+}
+
+.delete-button:hover {
+  background-color: #fcefef;
+}
+
+body.dark-mode .delete-button:hover {
+  background-color: #4b1a1a;
+}
+
+/* Pagination */
+.employee-pagination {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.pagination-info {
+  font-size: 14px;
+  color: #637188;
+  transition: color 0.3s ease;
+}
+
+body.dark-mode .pagination-info {
+  color: #9ca3af;
+}
+
+.pagination-controls {
+  display: flex;
+  gap: 4px;
+}
+
+.pagination-button {
+  min-width: 32px;
+  height: 32px;
+  padding: 0 8px;
+  background-color: #ffffff;
+  border: 1px solid #dfe3e8;
+  border-radius: 4px;
+  color: #637188;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+body.dark-mode .pagination-button {
+  background-color: #2d2d2d;
+  border-color: #444444;
+  color: #9ca3af;
+}
+
+.pagination-button:hover:not(:disabled) {
+  background-color: #f4f6f8;
+}
+
+body.dark-mode .pagination-button:hover:not(:disabled) {
+  background-color: #3a3a3a;
+}
+
+.pagination-button.active {
+  background-color: #4b5563;
+  color: #ffffff;
+  border-color: #4b5563;
+}
+
+.pagination-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .employee-table {
+    font-size: 13px;
+  }
+  
+  .employee-table th,
+  .employee-table td {
+    padding: 12px;
+  }
+  
+  .search-box {
+    width: 250px;
+  }
+}
+
+@media (max-width: 768px) {
+  .employee-container {
+    padding: 16px;
+  }
+  
+  .employee-controls {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .employee-actions {
+    justify-content: flex-end;
+  }
+  
+  .search-box {
+    width: 100%;
+  }
+  
+  .employee-table-container {
+    overflow-x: auto;
+  }
+  
+  .employee-table {
+    min-width: 800px;
+  }
+  
+  .employee-pagination {
+    flex-direction: column;
+    gap: 16px;
+    align-items: stretch;
+  }
+  
+  .pagination-controls {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .employee-header h1 {
+    font-size: 1.5rem;
+  }
+  
+  .add-employee-button {
+    padding: 6px 12px;
+    font-size: 13px;
+  }
+  
+  .action-buttons {
+    flex-direction: column;
+    gap: 4px;
+  }
+  
+  .action-button {
+    width: 100%;
+  }
+}

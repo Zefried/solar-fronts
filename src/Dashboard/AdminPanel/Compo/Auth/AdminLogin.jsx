@@ -4,6 +4,7 @@ import axios from 'axios';
 import './AdminAuth.css';
 import { AuthAction } from '../../../../CustomStateManage/OrgUnits/AuthState';
 
+// This component can be used for all types of user login
 const AdminLogin = () => {
   const navigate = useNavigate();
 
@@ -18,18 +19,18 @@ const AdminLogin = () => {
       [e.target.name]: e.target.value
     });
   };
-
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post('/api/admin-login', {
+      const res = await axios.post('/api/login', {
         type: 'login',
         ...formData
       });
 
-      if (res.data.status === 200) {
-        const userName = res.data.data.userData.name;
-        const token = res.data.data.loginData.access_token;
+      if (res.data?.status === 200) {
+        const userName = res.data.data?.name;
+        const token = res.data.token;
 
         AuthAction.updateState({
           isAuthenticated: true,
@@ -39,7 +40,7 @@ const AdminLogin = () => {
 
         navigate('/admin');
       } else {
-        alert(res.data.message || 'Login failed');
+        alert(res.data?.message || 'Login failed');
       }
     } catch (err) {
       alert(err.response?.data?.message || 'Server error');
@@ -50,7 +51,7 @@ const AdminLogin = () => {
     <div className="auth-container">
       <div className="auth-card">
         <div className="auth-header">
-          <h2>Admin Login</h2>
+          <h2>Let's Login</h2>
           <p>Welcome back! Please enter your credentials</p>
         </div>
 

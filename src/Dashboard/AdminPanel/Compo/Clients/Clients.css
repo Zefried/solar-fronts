@@ -1,0 +1,344 @@
+/* Clients Page Styles */
+.clients-container {
+  font-family: -apple-system, BlinkMacSystemFont, 'San Francisco', 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+  padding: 24px;
+  max-width: 100%;
+  margin: 0 auto;
+  color: #212b36;
+  background-color: #f9fafb;
+  min-height: 100vh;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Dark mode styles */
+body.dark-mode .clients-container {
+  color: #f9fafb;
+  background-color: #1a1a1a;
+}
+
+.clients-header {
+  margin-bottom: 32px;
+}
+
+.clients-header h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #212b36;
+  margin: 0 0 8px;
+  transition: color 0.3s ease;
+}
+
+body.dark-mode .clients-header h1 {
+  color: #f9fafb;
+}
+
+.clients-header p {
+  font-size: 1rem;
+  color: #637188;
+  margin: 0;
+  transition: color 0.3s ease;
+}
+
+body.dark-mode .clients-header p {
+  color: #9ca3af;
+}
+
+/* Clients Controls */
+.clients-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.filter-buttons {
+  display: flex;
+  gap: 8px;
+}
+
+.filter-button {
+  padding: 8px 16px;
+  background-color: #ffffff;
+  border: 1px solid #dfe3e8;
+  border-radius: 6px;
+  color: #637188;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+body.dark-mode .filter-button {
+  background-color: #2d2d2d;
+  border-color: #444444;
+  color: #9ca3af;
+}
+
+.filter-button:hover {
+  background-color: #f4f6f8;
+}
+
+body.dark-mode .filter-button:hover {
+  background-color: #3a3a3a;
+}
+
+.filter-button.active {
+  background-color: #4b5563;
+  color: #ffffff;
+  border-color: #4b5563;
+}
+
+.search-box {
+  display: flex;
+  align-items: center;
+  background-color: #ffffff;
+  border: 1px solid #dfe3e8;
+  border-radius: 6px;
+  overflow: hidden;
+  transition: border-color 0.2s ease;
+}
+
+body.dark-mode .search-box {
+  background-color: #2d2d2d;
+  border-color: #444444;
+}
+
+.search-box:focus-within {
+  border-color: #4b5563;
+}
+
+.search-box input {
+  border: none;
+  outline: none;
+  padding: 8px 12px;
+  font-size: 14px;
+  color: #212b36;
+  background-color: transparent;
+  width: 240px;
+}
+
+body.dark-mode .search-box input {
+  color: #f9fafb;
+}
+
+.search-box input::placeholder {
+  color: #919eab;
+}
+
+body.dark-mode .search-box input::placeholder {
+  color: #6b7280;
+}
+
+.search-button {
+  background: none;
+  border: none;
+  padding: 8px;
+  cursor: pointer;
+  color: #637188;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+body.dark-mode .search-button {
+  color: #9ca3af;
+}
+
+/* Clients Table */
+.clients-table-container {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  overflow: hidden;
+  margin-bottom: 24px;
+  transition: background-color 0.3s ease;
+}
+
+body.dark-mode .clients-table-container {
+  background: #2d2d2d;
+}
+
+.clients-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.clients-table th {
+  text-align: left;
+  padding: 16px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #637188;
+  border-bottom: 1px solid #f4f6f8;
+  background-color: #f9fafb;
+  transition: color 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
+}
+
+body.dark-mode .clients-table th {
+  color: #9ca3af;
+  background-color: #1f2937;
+  border-bottom-color: #444444;
+}
+
+.clients-table td {
+  padding: 16px;
+  font-size: 14px;
+  color: #212b36;
+  border-bottom: 1px solid #f4f6f8;
+  transition: color 0.3s ease, border-color 0.3s ease;
+}
+
+body.dark-mode .clients-table td {
+  color: #e5e7eb;
+  border-bottom-color: #444444;
+}
+
+.clients-table tr:last-child td {
+  border-bottom: none;
+}
+
+.clients-table tr:hover td {
+  background-color: #f9fafb;
+}
+
+body.dark-mode .clients-table tr:hover td {
+  background-color: #1f2937;
+}
+
+.client-name {
+  font-weight: 500;
+}
+
+.view-docs-button {
+  padding: 6px 12px;
+  background-color: #4b5563;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.view-docs-button:hover {
+  background-color: #6b7280;
+}
+
+/* Pagination */
+.clients-pagination {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.pagination-info {
+  font-size: 14px;
+  color: #637188;
+  transition: color 0.3s ease;
+}
+
+body.dark-mode .pagination-info {
+  color: #9ca3af;
+}
+
+.pagination-controls {
+  display: flex;
+  gap: 4px;
+}
+
+.pagination-button {
+  min-width: 32px;
+  height: 32px;
+  padding: 0 8px;
+  background-color: #ffffff;
+  border: 1px solid #dfe3e8;
+  border-radius: 4px;
+  color: #637188;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+body.dark-mode .pagination-button {
+  background-color: #2d2d2d;
+  border-color: #444444;
+  color: #9ca3af;
+}
+
+.pagination-button:hover:not(:disabled) {
+  background-color: #f4f6f8;
+}
+
+body.dark-mode .pagination-button:hover:not(:disabled) {
+  background-color: #3a3a3a;
+}
+
+.pagination-button.active {
+  background-color: #4b5563;
+  color: #ffffff;
+  border-color: #4b5563;
+}
+
+.pagination-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .clients-container {
+    padding: 16px;
+  }
+  
+  .clients-controls {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .search-box {
+    width: 100%;
+  }
+  
+  .search-box input {
+    width: 100%;
+  }
+  
+  .clients-table-container {
+    overflow-x: auto;
+  }
+  
+  .clients-table {
+    min-width: 600px;
+  }
+  
+  .clients-pagination {
+    flex-direction: column;
+    gap: 16px;
+    align-items: stretch;
+  }
+  
+  .pagination-controls {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .clients-header h1 {
+    font-size: 1.5rem;
+  }
+  
+  .filter-buttons {
+    width: 100%;
+  }
+  
+  .filter-button {
+    flex: 1;
+  }
+}
