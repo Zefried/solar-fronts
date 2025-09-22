@@ -14,6 +14,8 @@ import DocumentUploadForm from "./Dashboard/ClientPanel/Test/Document";
 import UserRegister from "./Dashboard/ClientPanel/Auth/ClientRegister";
 import EmployeeRegister from "./Dashboard/AdminPanel/Employee/Auth/EmployeeRegister";
 import PersonalInfo from "./Dashboard/ClientPanel/Test/PersonalInfo";
+import BankInfo from "./Dashboard/ClientPanel/Test/BankInfo";
+import Extrainfo from "./Dashboard/ClientPanel/Test/ExtraInfo";
 
 
 
@@ -52,10 +54,11 @@ function App() {
 
           </Route>
 
-             <Route path="doc" element={<DocumentUploadForm/>} />
-
-                
+            <Route path="doc" element={<DocumentUploadForm/>} /> 
             <Route path="personal-info" element={<PersonalInfo/>} />
+            <Route path="bank-info" element={<BankInfo/>} />
+            <Route path="extra-info" element={<Extrainfo/>} />
+
 
 
 
