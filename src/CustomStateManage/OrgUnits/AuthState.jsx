@@ -3,6 +3,7 @@ const customState = {
     isAuthenticated: false, 
     token:null,
     name:null,
+    role:null,
   },
 
 
@@ -41,8 +42,8 @@ const AuthAction = {
             isAuthenticated: false,
             token: null,
             userId: null,
+            role: null,
             name: null,
-            guestCart: []
         };
         localStorage.setItem('solar', JSON.stringify(customState.AuthState));
         customState.listeners.forEach(fn => fn(customState.AuthState));

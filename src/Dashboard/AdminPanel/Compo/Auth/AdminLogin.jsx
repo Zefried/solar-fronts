@@ -31,11 +31,13 @@ const AdminLogin = () => {
       if (res.data?.status === 200) {
         const userName = res.data.data?.name;
         const token = res.data.token;
+        const role = res.data.data?.role; 
 
         AuthAction.updateState({
           isAuthenticated: true,
           name: userName,
-          token: token
+          token: token,
+          role: role  
         });
 
         navigate('/admin');
