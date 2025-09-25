@@ -16,6 +16,13 @@ import EmployeeRegister from "./Dashboard/AdminPanel/Employee/Auth/EmployeeRegis
 import PersonalInfo from "./Dashboard/ClientPanel/Test/PersonalInfo";
 import BankInfo from "./Dashboard/ClientPanel/Test/BankInfo";
 import Extrainfo from "./Dashboard/ClientPanel/Test/ExtraInfo";
+import UploadDocs from "./Dashboard/ClientPanel/Components/UploadDocs/UploadDoc";
+import AddPersonalInfo from "./Dashboard/ClientPanel/Components/AddPersonalInfo/AddPersonalInfo";
+import AddBankInfo from "./Dashboard/ClientPanel/Components/AddBankInfo/AddBankInfo";
+import AddBankInfos from "./Dashboard/ClientPanel/Components/AddBankInfo/AddBankInfo";
+import AddExtrainfo from "./Dashboard/ClientPanel/Components/AddExtraInfo/AddExtraInfo";
+import ViewBankInfo from "./Dashboard/ClientPanel/Components/ViewBankInfo/ViewBankInfo";
+import ViewDocs from "./Dashboard/ClientPanel/Components/ViewDocs/ViewDocs";
 
 
 
@@ -46,11 +53,14 @@ function App() {
  
           <Route path="/client" element={<AdminHome />}>
             <Route path="dashboard" element={<ClientDashB/>} />
-            <Route path="add-basics" element={<AddBasicInfo/>} />
-            <Route path="add-bank-info" element={<FinancialInfo/>} />
-            <Route path="add-documents" element={<AddDocuments/>} />
-          
-            
+
+            <Route path="upload-documents" element={<UploadDocs/>} />
+            <Route path="add-personal-info" element={<AddPersonalInfo/>} />
+            <Route path="add-bank-info" element={<AddBankInfos/>} />
+            <Route path="add-extra-info" element={<AddExtrainfo/>} />
+
+            <Route path="view-bank-info" element={<ViewBankInfo/>} />
+            <Route path="view-docs" element={<ViewDocs/>} />
 
           </Route>
 

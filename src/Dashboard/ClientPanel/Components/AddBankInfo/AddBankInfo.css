@@ -1,0 +1,208 @@
+/* Modern Panel UI Styles for BankInfo with bi- prefix */
+
+.bi-bank-info-container {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: linear-gradient(135deg, #f5f7fa 0%, #eef2f7 100%);
+  padding: 2.5rem;
+  border-radius: 16px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+  max-width: 800px;
+  margin: 2rem auto;
+  position: relative;
+  overflow: hidden;
+}
+
+.bi-bank-info-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(90deg, #3182ce 0%, #2c5282 100%);
+}
+
+.bi-form-header {
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+
+.bi-form-header h2 {
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: #2d3748;
+  margin-bottom: 0.5rem;
+  letter-spacing: -0.025em;
+}
+
+.bi-form-header p {
+  color: #718096;
+  font-size: 1rem;
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+.bi-bank-info-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.bi-form-section {
+  background: white;
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+  transition: all 0.3s ease;
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  position: relative;
+  overflow: hidden;
+}
+
+.bi-form-section::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, #3182ce 0%, #2c5282 100%);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
+}
+
+.bi-form-section:hover::after {
+  transform: scaleX(1);
+}
+
+.bi-form-section:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+}
+
+.bi-form-section-title {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #2d3748;
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  letter-spacing: -0.025em;
+}
+
+.bi-form-section-title svg {
+  width: 24px;
+  height: 24px;
+  margin-right: 12px;
+  color: #3182ce;
+}
+
+.bi-form-group {
+  margin-bottom: 1.5rem;
+}
+
+.bi-form-label {
+  display: block;
+  margin-bottom: 0.6rem;
+  font-weight: 600;
+  color: #4a5568;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.bi-text-input {
+  width: 100%;
+  padding: 0.9rem 1rem;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  background-color: #f8fafc;
+  font-weight: 500;
+}
+
+.bi-text-input:focus {
+  outline: none;
+  border-color: #3182ce;
+  background-color: white;
+  box-shadow: 0 0 0 3px rgba(49, 130, 206, 0.1);
+}
+
+.bi-submit-button {
+  background: linear-gradient(135deg, #3182ce 0%, #2c5282 100%);
+  color: white;
+  border: none;
+  padding: 1rem 2rem;
+  font-size: 1rem;
+  font-weight: 700;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(49, 130, 206, 0.3);
+  margin-top: 1rem;
+  position: relative;
+  overflow: hidden;
+  letter-spacing: 0.025em;
+  text-transform: uppercase;
+  align-self: center;
+}
+
+.bi-submit-button:hover {
+  background: linear-gradient(135deg, #2c5282 0%, #2a4365 100%);
+  box-shadow: 0 6px 20px rgba(49, 130, 206, 0.4);
+  transform: translateY(-2px);
+}
+
+.bi-submit-button:active {
+  transform: translateY(0);
+}
+
+.bi-info-card {
+  background-color: #ebf8ff;
+  border-left: 4px solid #3182ce;
+  padding: 1rem;
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+}
+
+.bi-info-card p {
+  color: #2c5282;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.bi-info-card p strong {
+  font-weight: 600;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .bi-bank-info-container {
+    padding: 1.5rem;
+    margin: 1rem;
+  }
+  
+  .bi-form-section {
+    padding: 1.25rem;
+  }
+}
+
+/* Animation for form inputs */
+.bi-form-group {
+  animation: fadeIn 0.5s ease-in-out;
+  animation-fill-mode: both;
+}
+
+.bi-form-group:nth-child(1) { animation-delay: 0.1s; }
+.bi-form-group:nth-child(2) { animation-delay: 0.2s; }
+.bi-form-group:nth-child(3) { animation-delay: 0.3s; }
+.bi-form-group:nth-child(4) { animation-delay: 0.4s; }
+.bi-form-group:nth-child(5) { animation-delay: 0.5s; }
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}

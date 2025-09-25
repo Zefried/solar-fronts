@@ -1,0 +1,288 @@
+/* Modern Panel UI Styles for DocumentUploadForm - Fixed */
+
+.ud-document-upload-container {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: linear-gradient(135deg, #f5f7fa 0%, #eef2f7 100%);
+  padding: 2.5rem;
+  border-radius: 16px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+  max-width: 1000px;
+  margin: 2rem auto;
+  position: relative;
+  overflow: hidden;
+}
+
+.ud-document-upload-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+}
+
+.ud-document-upload-form {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.ud-form-row {
+  display: flex;
+  gap: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.ud-form-column {
+  flex: 1;
+}
+
+.ud-form-section {
+  background: white;
+  border-radius: 12px;
+  padding: 1.75rem;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+  transition: all 0.3s ease;
+  height: 100%;
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  position: relative;
+  overflow: hidden;
+}
+
+.ud-form-section::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
+}
+
+.ud-form-section:hover::after {
+  transform: scaleX(1);
+}
+
+.ud-form-section:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+}
+
+.ud-form-section-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #2d3748;
+  margin-bottom: 1.25rem;
+  display: flex;
+  align-items: center;
+  letter-spacing: -0.025em;
+}
+
+.ud-form-section-title svg {
+  width: 22px;
+  height: 22px;
+  margin-right: 10px;
+  color: #667eea;
+}
+
+.ud-form-group {
+  margin-bottom: 1.5rem;
+}
+
+.ud-form-label {
+  display: block;
+  margin-bottom: 0.6rem;
+  font-weight: 600;
+  color: #4a5568;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* Fixed file input styling */
+.ud-file-input-wrapper {
+  position: relative;
+  display: block;
+  width: 100%;
+  min-height: 60px;
+}
+
+.ud-file-input {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+  z-index: 2; /* Ensure it's above the display element */
+}
+
+.ud-file-input-display {
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+  background-color: #f8fafc;
+  border: 2px dashed #cbd5e0;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  color: #4a5568;
+  position: relative;
+  z-index: 1; /* Below the input */
+  min-height: 60px;
+}
+
+.ud-file-input-display:hover {
+  background-color: #edf2f7;
+  border-color: #a0aec0;
+}
+
+.ud-file-input-display svg {
+  margin-right: 12px;
+  color: #667eea;
+  width: 24px;
+  height: 24px;
+}
+
+.ud-text-input {
+  width: 100%;
+  padding: 0.9rem 1rem;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  background-color: #f8fafc;
+  font-weight: 500;
+}
+
+.ud-text-input:focus {
+  outline: none;
+  border-color: #667eea;
+  background-color: white;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+.ud-submit-button {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  padding: 1rem 2rem;
+  font-size: 1rem;
+  font-weight: 700;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+  margin-top: 1.5rem;
+  position: relative;
+  overflow: hidden;
+  letter-spacing: 0.025em;
+  text-transform: uppercase;
+}
+
+.ud-submit-button:hover {
+  background: linear-gradient(135deg, #5a67d8 0%, #6b46c1 100%);
+  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+  transform: translateY(-2px);
+}
+
+.ud-submit-button:active {
+  transform: translateY(0);
+}
+
+.ud-submit-button:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Loading spinner */
+.ud-submit-button.loading::after {
+  content: "";
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  border: 2px solid transparent;
+  border-top-color: #ffffff;
+  border-radius: 50%;
+  animation: ud-spinner 0.8s linear infinite;
+}
+
+@keyframes ud-spinner {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* File preview */
+.ud-file-preview {
+  margin-top: 0.75rem;
+  padding: 0.6rem;
+  background-color: #f0f4ff;
+  border-radius: 8px;
+  font-size: 0.875rem;
+  color: #2d3748;
+  display: flex;
+  align-items: center;
+  border-left: 3px solid #667eea;
+}
+
+.ud-file-preview svg {
+  margin-right: 8px;
+  color: #667eea;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .ud-document-upload-container {
+    padding: 1.5rem;
+    margin: 1rem;
+  }
+  
+  .ud-form-section {
+    padding: 1.25rem;
+  }
+  
+  .ud-form-row {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+}
+
+/* Icons for file inputs */
+.ud-upload-icon {
+  width: 24px;
+  height: 24px;
+  margin-right: 12px;
+}
+
+/* Modern header */
+.ud-form-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.ud-form-header h2 {
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: #2d3748;
+  margin-bottom: 0.5rem;
+  letter-spacing: -0.025em;
+}
+
+.ud-form-header p {
+  color: #718096;
+  font-size: 1rem;
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
