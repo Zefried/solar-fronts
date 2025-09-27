@@ -23,6 +23,8 @@ import AddBankInfos from "./Dashboard/ClientPanel/Components/AddBankInfo/AddBank
 import AddExtrainfo from "./Dashboard/ClientPanel/Components/AddExtraInfo/AddExtraInfo";
 import ViewBankInfo from "./Dashboard/ClientPanel/Components/ViewBankInfo/ViewBankInfo";
 import ViewDocs from "./Dashboard/ClientPanel/Components/ViewDocs/ViewDocs";
+import ViewPersonalInfo from "./Dashboard/ClientPanel/Components/ViewPersonalInfo/ViewPersonalInfo";
+import ViewExtraInfo from "./Dashboard/ClientPanel/Components/ViewExtraInfo/ViewExtraInfo";
 
 
 
@@ -61,6 +63,8 @@ function App() {
 
             <Route path="view-bank-info" element={<ViewBankInfo/>} />
             <Route path="view-docs" element={<ViewDocs/>} />
+            <Route path="view-personal-info" element={<ViewPersonalInfo/>} />
+            <Route path="view-extra-info" element={<ViewExtraInfo/>} />
 
           </Route>
 
