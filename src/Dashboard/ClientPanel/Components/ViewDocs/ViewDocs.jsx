@@ -78,6 +78,31 @@ const ViewDocs = () => {
         }
     };
 
+   const handleDownload = async (filePathFromDB) => {
+        try {
+            const filename = filePathFromDB.split('/').pop(); // extract just the name for saving
+            const response = await axios.post(
+            '/api/user/download',
+            { path: filePathFromDB }, // send full path
+            { headers: { Authorization: `Bearer ${token}` }, responseType: 'blob' }
+            );
+
+            const fileURL = window.URL.createObjectURL(new Blob([response.data]));
+            const link = document.createElement('a');
+            link.href = fileURL;
+            link.setAttribute('download', filename); // force download with proper name
+            document.body.appendChild(link);
+            link.click();
+            link.remove();
+            window.URL.revokeObjectURL(fileURL);
+        } catch (err) {
+            console.error('Download failed:', err);
+        }
+    };
+
+
+
+
     // Render editable text fields
     const renderEditableField = (label, field) => (
         <p>
@@ -131,6 +156,25 @@ const ViewDocs = () => {
                     ref={input => input && input.click()}
                 />
             )}
+           {draftValues[field] && !(draftValues[field] instanceof File) && (
+                <div style={{ display: 'flex', gap: '5px', marginLeft: '5px' }}>
+                    <button
+                        onClick={() => window.open(`${BASE_URL}${draftValues[field]}`, '_blank', 'noopener,noreferrer')}
+                        style={{ cursor: 'pointer' }}
+                    >
+                        View
+                    </button>
+                <button
+                    style={{ marginLeft: '10px', cursor: 'pointer' }}
+                    onClick={() => handleDownload(draftValues[field])} // pass full path from DB
+                    >
+                    ⬇ Download
+                </button>
+
+                </div>
+            )}
+
+
         </div>
     );
 
@@ -155,6 +199,8 @@ const ViewDocs = () => {
             >
                 Save Changes
             </button>
+
+            
         </div>
     );
 };
