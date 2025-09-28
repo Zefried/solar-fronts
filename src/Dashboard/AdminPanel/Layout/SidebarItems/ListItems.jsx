@@ -34,9 +34,10 @@ const ListItems = () => {
                         <path d="M4 6L8 10L12 6" stroke="#6B7280" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
                         </svg>
                     </button>
+
                     <ul className={`sb-submenu ${isAddDocument ? 'sb-submenu-open' : ''}`}>
                         <li>
-                        <Link to={'#'} className="sb-submenu-item">
+                        <Link to={'/client/upload-documents'} className="sb-submenu-item">
                             {/* ID card icon */}
                             <svg className="sb-submenu-icon" width="16" height="16" viewBox="0 0 24 24" fill="none">
                             <path d="M3 5h18v14H3V5z" stroke="#6B7280" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
@@ -47,19 +48,19 @@ const ListItems = () => {
                         </li>
 
                         <li>
-                        <Link to={'#'} className="sb-submenu-item">
-                            {/* Bank icon */}
-                            <svg className="sb-submenu-icon" width="16" height="16" viewBox="0 0 24 24" fill="none">
-                            <path d="M3 10h18L12 3 3 10z" stroke="#6B7280" strokeWidth="1.5" strokeLinecap="round"/>
-                            <path d="M4 10v10h16V10" stroke="#6B7280" strokeWidth="1.5"/>
-                            <path d="M9 14h6" stroke="#6B7280" strokeWidth="1.5"/>
-                            </svg>
-                            Add Bank Info
-                        </Link>
+                            <Link to={'/client/add-bank-info'} className="sb-submenu-item">
+                                {/* Bank icon */}
+                                <svg className="sb-submenu-icon" width="16" height="16" viewBox="0 0 24 24" fill="none">
+                                <path d="M3 10h18L12 3 3 10z" stroke="#6B7280" strokeWidth="1.5" strokeLinecap="round"/>
+                                <path d="M4 10v10h16V10" stroke="#6B7280" strokeWidth="1.5"/>
+                                <path d="M9 14h6" stroke="#6B7280" strokeWidth="1.5"/>
+                                </svg>
+                                Add Bank Info
+                            </Link>
                         </li>
 
                         <li>
-                        <Link to={'#'} className="sb-submenu-item">
+                        <Link to={'/client/add-personal-info'} className="sb-submenu-item">
                             {/* User / Profile icon */}
                             <svg className="sb-submenu-icon" width="16" height="16" viewBox="0 0 24 24" fill="none">
                             <circle cx="12" cy="7" r="4" stroke="#6B7280" strokeWidth="1.5"/>
@@ -70,7 +71,7 @@ const ListItems = () => {
                         </li>
 
                         <li>
-                        <Link to={'#'} className="sb-submenu-item">
+                        <Link to={'/client/add-extra-info'} className="sb-submenu-item">
                             {/* Info / Document icon */}
                             <svg className="sb-submenu-icon" width="16" height="16" viewBox="0 0 24 24" fill="none">
                             <path d="M6 2h9l5 5v15H6V2z" stroke="#6B7280" strokeWidth="1.5" strokeLinejoin="round"/>
@@ -101,7 +102,7 @@ const ListItems = () => {
                             </button>
                             <ul className={`sb-submenu ${isViewDocument ? 'sb-submenu-open' : ''}`}>
                                 <li>
-                                    <Link to={'#'} className="sb-submenu-item">
+                                    <Link to={'/client/view-docs'} className="sb-submenu-item">
                                         {/* ID card icon */}
                                         <svg className="sb-submenu-icon" width="16" height="16" viewBox="0 0 24 24" fill="none">
                                         <rect x="3" y="5" width="18" height="14" rx="2" stroke="#6B7280" strokeWidth="1.5"/>
@@ -113,7 +114,7 @@ const ListItems = () => {
                                 </li>
 
                                 <li>
-                                    <Link to={'#'} className="sb-submenu-item">
+                                    <Link to={'/client/view-bank-info'} className="sb-submenu-item">
                                         {/* Bank icon */}
                                         <svg className="sb-submenu-icon" width="16" height="16" viewBox="0 0 24 24" fill="none">
                                         <path d="M3 10h18L12 3 3 10z" stroke="#6B7280" strokeWidth="1.5" strokeLinecap="round"/>
@@ -125,7 +126,7 @@ const ListItems = () => {
                                 </li>
 
                                 <li>
-                                    <Link to={'#'} className="sb-submenu-item">
+                                    <Link to={'/client/view-personal-info'} className="sb-submenu-item">
                                         {/* User / Profile icon */}
                                         <svg className="sb-submenu-icon" width="16" height="16" viewBox="0 0 24 24" fill="none">
                                         <circle cx="12" cy="7" r="4" stroke="#6B7280" strokeWidth="1.5"/>
@@ -136,7 +137,7 @@ const ListItems = () => {
                                 </li>
 
                                 <li>
-                                    <Link to={'#'} className="sb-submenu-item">
+                                    <Link to={'/client/view-extra-info'} className="sb-submenu-item">
                                         {/* File / Document icon */}
                                         <svg className="sb-submenu-icon" width="16" height="16" viewBox="0 0 24 24" fill="none">
                                         <path d="M6 2h9l5 5v15H6V2z" stroke="#6B7280" strokeWidth="1.5" strokeLinejoin="round"/>

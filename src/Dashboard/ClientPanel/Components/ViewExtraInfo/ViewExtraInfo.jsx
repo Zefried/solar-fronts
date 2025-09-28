@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { AuthAction } from '../../../../CustomStateManage/OrgUnits/AuthState';
+import './ViewExtraInfo.css';
 
 const ViewExtraInfo = () => {
     const [extraInfo, setExtraInfo] = useState(null);
     const [loading, setLoading] = useState(true);
+    const [isSaving, setIsSaving] = useState(false);
     const { token } = AuthAction.getState('solar');
 
     const [draftValues, setDraftValues] = useState({});
@@ -33,6 +35,7 @@ const ViewExtraInfo = () => {
     };
 
     const handleSaveChanges = async () => {
+        setIsSaving(true);
         try {
             const res = await axios.post('/api/user/update/extra-info', draftValues, {
                 headers: { Authorization: `Bearer ${token}` }
@@ -44,15 +47,18 @@ const ViewExtraInfo = () => {
         } catch (err) {
             console.error('Failed to update extra info', err);
             alert('Update failed');
+        } finally {
+            setIsSaving(false);
         }
     };
 
     const renderEditableField = (label, field, type = 'text') => (
-        <p>
-            <strong>{label}:</strong>{' '}
+        <div className="ei-form-group">
+            <label className="ei-form-label">{label}</label>
             {editingField === field ? (
                 <input
                     type={type}
+                    className="ei-text-input"
                     value={draftValues[field] || ''}
                     autoFocus
                     onChange={e => handleFieldChange(field, e.target.value)}
@@ -60,33 +66,90 @@ const ViewExtraInfo = () => {
                     onKeyDown={e => e.key === 'Enter' && setEditingField(null)}
                 />
             ) : (
-                <>
-                    {draftValues[field] || 'N/A'}
-                    <button style={{ marginLeft: '5px', border: 'none' }} onClick={() => setEditingField(field)}>🖊</button>
-                </>
+                <div className="ei-field-display">
+                    <span>{draftValues[field] || 'N/A'}</span>
+                    <button 
+                        className="ei-edit-button" 
+                        onClick={() => setEditingField(field)}
+                        aria-label={`Edit ${label}`}
+                    >
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                            <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                            <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                        </svg>
+                    </button>
+                </div>
             )}
-        </p>
+        </div>
     );
 
-    if (loading) return <p>Loading...</p>;
-    if (!extraInfo) return <p>No extra information found.</p>;
+    if (loading) {
+        return (
+            <div className="ei-extra-info-container">
+                <div className="ei-loading-container">
+                    <div className="ei-loading-spinner"></div>
+                    <p>Loading extra information...</p>
+                </div>
+            </div>
+        );
+    }
+
+    if (!extraInfo) {
+        return (
+            <div className="ei-extra-info-container">
+                <div className="ei-error-container">
+                    <div className="ei-error-icon">⚠️</div>
+                    <p>No extra information found.</p>
+                </div>
+            </div>
+        );
+    }
 
     return (
-        <>
-            <h2>Extra Information</h2>
-            {renderEditableField('Installation Address Same', 'installation_address')}
-            {renderEditableField('Village', 'village')}
-            {renderEditableField('Landmark', 'landmark')}
-            {renderEditableField('District', 'district')}
-            {renderEditableField('Pincode', 'pincode')}
-            {renderEditableField('State', 'state')}
-            {renderEditableField('Proposed Capacity', 'proposed_capacity')}
-            {renderEditableField('Plot Type', 'plot_type')}
-
-            <button style={{ marginTop: '15px', padding: '6px 12px', cursor: 'pointer' }} onClick={handleSaveChanges}>
-                Save Changes
-            </button>
-        </>
+        <div className="ei-extra-info-container">
+            <div className="ei-form-header">
+                <h2>Installation Information</h2>
+                <p>Manage your installation details for a seamless process</p>
+            </div>
+            
+            <div className="ei-form-section">
+                <div className="ei-form-section-title">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                        <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                    </svg>
+                    Installation Details
+                </div>
+                
+                {renderEditableField('Installation Address', 'installation_address')}
+                {renderEditableField('Village', 'village')}
+                {renderEditableField('Landmark', 'landmark')}
+                {renderEditableField('District', 'district')}
+                {renderEditableField('Pincode', 'pincode')}
+                {renderEditableField('State', 'state')}
+                {renderEditableField('Proposed Capacity', 'proposed_capacity')}
+                {renderEditableField('Plot Type', 'plot_type')}
+                
+                <div className="ei-info-card">
+                    <p><strong>Note:</strong> Please ensure all installation details are accurate to avoid delays in processing your application.</p>
+                </div>
+                
+                <button 
+                    className={`ei-submit-button ${isSaving ? 'ei-submit-button-saving' : ''}`} 
+                    onClick={handleSaveChanges}
+                    disabled={isSaving}
+                >
+                    {isSaving ? (
+                        <>
+                            <span className="ei-button-spinner"></span>
+                            Saving Changes...
+                        </>
+                    ) : (
+                        'Save Changes'
+                    )}
+                </button>
+            </div>
+        </div>
     );
 };
 

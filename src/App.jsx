@@ -25,6 +25,7 @@ import ViewBankInfo from "./Dashboard/ClientPanel/Components/ViewBankInfo/ViewBa
 import ViewDocs from "./Dashboard/ClientPanel/Components/ViewDocs/ViewDocs";
 import ViewPersonalInfo from "./Dashboard/ClientPanel/Components/ViewPersonalInfo/ViewPersonalInfo";
 import ViewExtraInfo from "./Dashboard/ClientPanel/Components/ViewExtraInfo/ViewExtraInfo";
+import ClientDashboard from "./Dashboard/ClientPanel/Components/Dashboard/ClientDashboard";
 
 
 
@@ -54,7 +55,9 @@ function App() {
 
  
           <Route path="/client" element={<AdminHome />}>
-            <Route path="dashboard" element={<ClientDashB/>} />
+            {/* <Route path="dashboard-old" element={<ClientDashB/>} /> */}
+
+            <Route index element={<ClientDashboard />} />  {/* default dashboard */}
 
             <Route path="upload-documents" element={<UploadDocs/>} />
             <Route path="add-personal-info" element={<AddPersonalInfo/>} />
