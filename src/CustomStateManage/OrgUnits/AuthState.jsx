@@ -4,6 +4,8 @@ const customState = {
     token:null,
     name:null,
     role:null,
+    selectedClient: {},
+    selectedEmployee:{},
   },
 
 

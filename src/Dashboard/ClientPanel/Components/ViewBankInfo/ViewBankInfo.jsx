@@ -12,6 +12,8 @@ const ViewBankInfo = () => {
     const [draftValues, setDraftValues] = useState({});
     const [editingField, setEditingField] = useState(null);
 
+   
+    
     useEffect(() => {
         const fetchBankInfo = async () => {
             try {
@@ -36,6 +38,8 @@ const ViewBankInfo = () => {
 
         fetchBankInfo();
     }, []);
+
+
 
     const handleFieldChange = (field, value) => {
         setDraftValues({ ...draftValues, [field]: value });
@@ -119,6 +123,8 @@ const ViewBankInfo = () => {
                 <h2>Bank Information</h2>
                 <p>Manage your bank details for seamless transactions</p>
             </div>
+
+            {/* Rest of your bank info UI */}
             
             <div className="bi-form-section">
                 <div className="bi-form-section-title">

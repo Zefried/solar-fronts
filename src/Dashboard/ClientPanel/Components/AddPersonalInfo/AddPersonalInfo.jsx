@@ -1,11 +1,12 @@
 import axios from 'axios';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './AddPersonalInfo.css'; // Make sure to import the CSS file
 import { AuthAction } from '../../../../CustomStateManage/OrgUnits/AuthState';
+import FetchUser from '../../../EmployeePanel/Components/FetchUsers/FetchUser';
 
 const AddPersonalInfo = () => {
-    const { token } = AuthAction.getState('solar'); 
 
+    const [selectedUser, setSelectedUser] = useState(null);
 
     const [formData, setFormData] = useState({
         first_name: '',
@@ -21,6 +22,18 @@ const AddPersonalInfo = () => {
         alternative_phone: '',
     });
 
+    useEffect(() => {
+        const handleUserSelected = (e) => {
+            setSelectedUser({ id: e.detail.id, name: e.detail.name });
+            console.log("User selected event received:", e.detail);
+        };
+        window.addEventListener('userSelected', handleUserSelected);
+        return () => window.removeEventListener('userSelected', handleUserSelected);
+           
+    }, []);
+    
+    console.log("Selected User:", selectedUser);
+
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData(prev => ({ ...prev, [name]: value }));
@@ -28,19 +41,35 @@ const AddPersonalInfo = () => {
     
     const handleSubmit = async (e) => {
         e.preventDefault();
+
+        const { token, role } = AuthAction.getState('solar');
+
+        // Clone formData so we can safely modify
+        const payload = { ...formData };
+
+        // If not user, attach selected user ID
+        if (role !== 'user' && selectedUser) {
+            payload.userId = selectedUser.id;
+        }
+
         try {
-            const res = await axios.post('/api/user/personal-info', formData, {
-                headers: {
-                    Authorization: `Bearer ${token}`
-                }
+            const res = await axios.post('/api/user/personal-info', payload, {
+                headers: { Authorization: `Bearer ${token}` }
             });
-            console.log(res.data);
-            alert("✅ Information saved successfully!");
+
+            console.log("Response:", res.data);
+
+            if (res.data.status === 200) {
+                alert("✅ Information saved successfully!");
+            } else {
+                alert(res.data.message || "⚠️ Something went wrong!");
+            }
         } catch (err) {
-            console.error(err);
+            console.error("Error:", err.response?.data || err.message);
             alert("⚠️ Failed to save information.");
         }
     };
+
 
     return (
         <div className="pi-personal-info-container">
@@ -48,6 +77,14 @@ const AddPersonalInfo = () => {
                 <h2>Personal Information</h2>
                 <p>Please provide your personal details to complete your profile</p>
             </div>
+
+            <FetchUser/>
+            {
+                selectedUser && (<div className="ud-selected-user-info">
+                   Selected User: <strong>{selectedUser.name} </strong>  Upload documents for this user.
+                </div>
+                )
+            }
             
             <form onSubmit={handleSubmit} className="pi-personal-info-form">
                 {/* Personal Details Section */}

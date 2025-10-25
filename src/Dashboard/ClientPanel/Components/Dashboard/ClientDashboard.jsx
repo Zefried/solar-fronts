@@ -18,7 +18,8 @@ const ClientDashboard = () => {
         bankFinanceType: 'bank',
         hasAadhaar: false,
         hasElectricityBill: false,
-        hasConsumerNumber: false
+        hasConsumerNumber: false,
+        hasInstallationDetails: false
     });
 
     const fetchClientData = async (from = null, to = null) => {
@@ -46,15 +47,28 @@ const ClientDashboard = () => {
         const personalInfo = data.personalInfo?.[0] || {};
         const bankInfo = data.bankInfo?.[0] || {};
         const documents = data.documents?.[0] || {};
+        const extraInfo = data.extraInfo?.[0] || {};
+        
+        // Check if installation details are complete
+        const hasInstallationDetails = extraInfo.installation_address && 
+                                      extraInfo.village && 
+                                      extraInfo.district && 
+                                      extraInfo.state && 
+                                      extraInfo.proposed_capacity && 
+                                      extraInfo.plot_type;
+        
+        // FIXED: Now checking both account number AND account holder name
+        const hasBankDetails = !!(bankInfo.account_number && bankInfo.account_holder_name);
         
         setUiData({
             name: `${personalInfo.first_name || ''} ${personalInfo.middle_name || ''} ${personalInfo.last_name || ''}`.trim(),
             phone: personalInfo.phone || '',
-            hasBankDetails: !!bankInfo.account_number,
+            hasBankDetails: hasBankDetails,
             bankFinanceType: 'bank', 
             hasAadhaar: !!documents.id_proof_number,
             hasElectricityBill: !!documents.electricity_bill,
-            hasConsumerNumber: !!documents.consumer_number
+            hasConsumerNumber: !!documents.consumer_number,
+            hasInstallationDetails: hasInstallationDetails
         });
     };
 
@@ -111,12 +125,26 @@ const ClientDashboard = () => {
         };
     };
 
+    const getInstallationStatus = () => {
+        const missing = [];
+        if (!uiData.hasInstallationDetails) missing.push('Installation Details');
+        
+        return {
+            completed: missing.length === 0,
+            missing: missing
+        };
+    };
+
     const basicInfoStatus = getBasicInfoStatus();
     const financialInfoStatus = getFinancialInfoStatus();
     const documentStatus = getDocumentStatus();
+    const installationStatus = getInstallationStatus();
     
     // Check if all cards are completed
-    const allCardsCompleted = basicInfoStatus.completed && financialInfoStatus.completed && documentStatus.completed;
+    const allCardsCompleted = basicInfoStatus.completed && 
+                              financialInfoStatus.completed && 
+                              documentStatus.completed && 
+                              installationStatus.completed;
 
     if (loading) return (
         <div className="client-dashboard-container">
@@ -251,7 +279,8 @@ const ClientDashboard = () => {
                             <React.Fragment key={bank.id}>
                                 <div className="detail-item">
                                     <span className="detail-label">Account Holder:</span>
-                                    <span className="detail-value">{bank.account_holder_name}</span>
+                                    {/* FIXED: Handle null account holder name */}
+                                    <span className="detail-value">{bank.account_holder_name || 'Not provided'}</span>
                                 </div>
                                 <div className="detail-item">
                                     <span className="detail-label">Bank:</span>
@@ -333,39 +362,67 @@ const ClientDashboard = () => {
                         ))}
                     </div>
                 </div>
-            </div>
-            
-            {/* Additional Information Section */}
-            <div className="additional-info-section">
-                <h3>Installation Details</h3>
-                {extraInfo.map(extra => (
-                    <div key={extra.id} className="info-card">
-                        <div className="detail-item">
-                            <span className="detail-label">Installation Address:</span>
-                            <span className="detail-value">{extra.installation_address == 1 ? 'Same' : 'New'}</span>
-                        </div>
-                        <div className="detail-item">
-                            <span className="detail-label">Village:</span>
-                            <span className="detail-value">{extra.village}</span>
-                        </div>
-                        <div className="detail-item">
-                            <span className="detail-label">District:</span>
-                            <span className="detail-value">{extra.district}</span>
-                        </div>
-                        <div className="detail-item">
-                            <span className="detail-label">State:</span>
-                            <span className="detail-value">{extra.state}</span>
-                        </div>
-                        <div className="detail-item">
-                            <span className="detail-label">Proposed Capacity:</span>
-                            <span className="detail-value">{extra.proposed_capacity}</span>
-                        </div>
-                        <div className="detail-item">
-                            <span className="detail-label">Plot Type:</span>
-                            <span className="detail-value">{extra.plot_type}</span>
-                        </div>
+                
+                {/* Installation Details Card */}
+                <div className={`status-card ${installationStatus.completed ? 'completed' : 'pending'}`}>
+                    <div className="card-icon">
+                        {installationStatus.completed ? (
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                                <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                            </svg>
+                        ) : (
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <line x1="12" y1="8" x2="12" y2="12"></line>
+                                <line x1="12" y1="16" x2="12.01" y2="16"></line>
+                            </svg>
+                        )}
                     </div>
-                ))}
+                    
+                    <div className="card-content">
+                        <h3>Installation Details</h3>
+                        {installationStatus.completed ? (
+                            <p className="success-text">✓ Completed</p>
+                        ) : (
+                            <div className="pending-info">
+                                <p className="pending-text">Installation details incomplete</p>
+                                <p className="missing-text">Missing: {installationStatus.missing.join(', ')}</p>
+                            </div>
+                        )}
+                    </div>
+                    
+                    <div className="card-details">
+                        {extraInfo.map(extra => (
+                            <React.Fragment key={extra.id}>
+                                <div className="detail-item">
+                                    <span className="detail-label">Installation Address:</span>
+                                    <span className="detail-value">{extra.installation_address == 1 ? 'Same' : 'New'}</span>
+                                </div>
+                                <div className="detail-item">
+                                    <span className="detail-label">Village:</span>
+                                    <span className="detail-value">{extra.village}</span>
+                                </div>
+                                <div className="detail-item">
+                                    <span className="detail-label">District:</span>
+                                    <span className="detail-value">{extra.district}</span>
+                                </div>
+                                <div className="detail-item">
+                                    <span className="detail-label">State:</span>
+                                    <span className="detail-value">{extra.state}</span>
+                                </div>
+                                <div className="detail-item">
+                                    <span className="detail-label">Proposed Capacity:</span>
+                                    <span className="detail-value">{extra.proposed_capacity}</span>
+                                </div>
+                                <div className="detail-item">
+                                    <span className="detail-label">Plot Type:</span>
+                                    <span className="detail-value">{extra.plot_type}</span>
+                                </div>
+                            </React.Fragment>
+                        ))}
+                    </div>
+                </div>
             </div>
         </div>
     );

@@ -1,11 +1,13 @@
 import axios from 'axios';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './UploadDoc.css';
 import { AuthAction } from '../../../../CustomStateManage/OrgUnits/AuthState';
+import FetchUser from '../../../EmployeePanel/Components/FetchUsers/FetchUser';
 
 const UploadDocs = () => {
     const { token } = AuthAction.getState('solar');
     const [loading, setLoading] = useState(false);
+    const [selectedUser, setSelectedUser] = useState(null);
 
     const [formData, setFormData] = useState({
         idProofFront: null,
@@ -16,8 +18,20 @@ const UploadDocs = () => {
         cancelledCheque: null,
         electricityBill: null,
         consumerNumber: '',
-        userId:2
+        userId:'',
     });
+
+    useEffect(() => {
+        const handleUserSelected = (e) => {
+            setSelectedUser({ id: e.detail.id, name: e.detail.name });
+            console.log("User selected event received:", e.detail);
+        };
+        window.addEventListener('userSelected', handleUserSelected);
+        return () => window.removeEventListener('userSelected', handleUserSelected);
+       
+    }, []);
+
+    console.log("Selected User:", selectedUser);
 
     const handleChange = (e) => {
         const { name, type, files, value } = e.target;
@@ -38,6 +52,9 @@ const UploadDocs = () => {
                 payload.append(key, value);
             }
         });
+
+        const {role} = AuthAction.getState('solar');
+        if (role !== 'user' && selectedUser) payload.append('userId', selectedUser.id);
 
         try {
             const res = await axios.post(
@@ -75,6 +92,15 @@ const UploadDocs = () => {
                 <h2>Document Verification</h2>
                 <p>Please upload the required documents to complete your verification process</p>
             </div>
+
+            <FetchUser/>
+
+            {
+                selectedUser && (<div className="ud-selected-user-info">
+                   Selected User: <strong>{selectedUser.name} </strong>  Upload documents for this user.
+                </div>
+                )
+            }
             
             <form onSubmit={handleSubmit} encType="multipart/form-data" className="ud-document-upload-form">
                 {/* Two-column row for ID Proof and PAN Card */}

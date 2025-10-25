@@ -1,27 +1,60 @@
 import axios from 'axios';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './AddBankInfo.css'; // Make sure to import the CSS file
 import { AuthAction } from '../../../../CustomStateManage/OrgUnits/AuthState';
+import FetchUser from '../../../EmployeePanel/Components/FetchUsers/FetchUser';
 
 const AddBankInfos = () => {
-    const { token } = AuthAction.getState('solar'); 
+    const { token, role } = AuthAction.getState('solar'); 
+
+    // const [selectedUser, setSelectedUser] = useState('');
+    
     const [formData, setFormData] = useState({
         account_holder_name: '',
         account_number: '',
         bank_name: '',
         ifsc_code: '',
         branch_name: '',
+        userId: '',
     });
 
+    const [selectedUser, setSelectedUser] = useState(null);
+    
+    useEffect(() => {
+        const handleUserSelected = (e) => {
+                setSelectedUser({ id: e.detail.id, name: e.detail.name });
+                console.log("User selected event received:", e.detail);
+        };
+        window.addEventListener('userSelected', handleUserSelected);
+        return () => window.removeEventListener('userSelected', handleUserSelected);
+           
+    }, []);
+    
+    console.log("Selected User:", selectedUser);
+  
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData(prev => ({ ...prev, [name]: value }));
     };
 
+    
+
     const handleSubmit = async (e) => {
         e.preventDefault();
+
+        // Check for employee/other roles: must select a user
+        if (role !== 'user' && !selectedUser) {
+            alert("⚠️ You must select a user first!");
+            return;
+        }
+
         try {
-            const res = await axios.post('/api/user/bank-info', formData, {
+            const payload = {
+                ...formData,
+                userId: role === 'user' ? null : selectedUser.id, // attach selected user for employees
+            };
+
+            const res = await axios.post('/api/user/bank-info', payload, {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }
@@ -33,6 +66,7 @@ const AddBankInfos = () => {
             alert("⚠️ Failed to save bank information.");
         }
     };
+
 
     return (
         <div className="bi-bank-info-container">
@@ -47,6 +81,22 @@ const AddBankInfos = () => {
             
             <form onSubmit={handleSubmit} className="bi-bank-info-form">
                 <div className="bi-form-section">
+
+                  <p><strong>Submission Note:</strong> Please select your client from the database, or add your client if they do not exist, before submitting the documents on their behalf.</p>
+
+
+                    {/* Pass down state + setter */}
+                    <FetchUser/>
+
+                    {
+                        selectedUser && (<div className="ud-selected-user-info">
+                        Selected User: <strong>{selectedUser.name} </strong>  Upload documents for this user.
+                        </div>
+                        )
+                    }
+
+                    {/* Rest of your bank info UI */}
+
                     <h3 className="bi-form-section-title">
                         <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>

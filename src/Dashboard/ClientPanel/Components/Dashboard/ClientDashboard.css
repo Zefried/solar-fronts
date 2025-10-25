@@ -411,6 +411,35 @@ body.dark-mode .info-card {
     margin-bottom: 16px;
 }
 
+/* Update the grid layout for status cards */
+.status-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+/* For larger screens, show 4 cards in a row */
+@media (min-width: 1200px) {
+  .status-cards {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* For medium screens, show 2 cards in a row */
+@media (min-width: 768px) and (max-width: 1199px) {
+  .status-cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* For small screens, show 1 card in a row */
+@media (max-width: 767px) {
+  .status-cards {
+    grid-template-columns: 1fr;
+  }
+}
+
 @keyframes spin {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }

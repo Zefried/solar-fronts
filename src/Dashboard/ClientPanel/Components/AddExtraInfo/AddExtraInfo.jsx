@@ -1,7 +1,8 @@
 import axios from 'axios';
-import React, { useState } from 'react';
+import React, { useState, useEffect} from 'react';
 import './AddExtrainfo.css';
 import { AuthAction } from '../../../../CustomStateManage/OrgUnits/AuthState';
+import FetchUser from '../../../EmployeePanel/Components/FetchUsers/FetchUser';
 
 const AddExtrainfo = () => {
     
@@ -16,6 +17,20 @@ const AddExtrainfo = () => {
         proposed_capacity: '',
         plot_type: '',
     });
+    
+    const [selectedUser, setSelectedUser] = useState(null);
+    
+    useEffect(() => {
+        const handleUserSelected = (e) => {
+            setSelectedUser({ id: e.detail.id, name: e.detail.name });
+            console.log("User selected event received:", e.detail);
+        };
+        window.addEventListener('userSelected', handleUserSelected);
+        return () => window.removeEventListener('userSelected', handleUserSelected);
+           
+    }, []);
+    
+    console.log("Selected User:", selectedUser);
 
     const handleChange = (e) => {
         const { name, type, value, checked } = e.target;
@@ -27,17 +42,33 @@ const AddExtrainfo = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+
+        const { token, role } = AuthAction.getState('solar');
+        const payload = { ...formData };
+
+        // Attach selectedUser ID for employees/admins
+        if (role !== 'user' && selectedUser) {
+            payload.userId = selectedUser.id;
+        }
+
         try {
-            const res = await axios.post('/api/user/extra-info', formData, {
+            const res = await axios.post('/api/user/extra-info', payload, {
                 headers: { Authorization: `Bearer ${token}` }
             });
-            console.log(res.data);
-            alert("✅ Extra info saved successfully!");
+
+            console.log("Response:", res.data);
+
+            if (res.data.status === 200) {
+                alert("✅ Extra info saved successfully!");
+            } else {
+                alert(res.data.message || "⚠️ Something went wrong!");
+            }
         } catch (err) {
-            console.error(err);
+            console.error("Upload failed:", err.response?.data || err.message);
             alert("⚠️ Failed to save extra info.");
         }
     };
+
 
     return (
         <div className="ei-extra-info-container">
@@ -45,6 +76,15 @@ const AddExtrainfo = () => {
                 <h2>Installation Details</h2>
                 <p>Please provide additional information about your solar installation</p>
             </div>
+
+            <FetchUser/>
+
+            {
+                selectedUser && (<div className="ud-selected-user-info">
+                   Selected User: <strong>{selectedUser.name} </strong>  Upload documents for this user.
+                </div>
+                )
+            }
             
             <div className="ei-info-card">
                 <p><strong>Important:</strong> The installation address is where the solar panels will be set up. This may be different from your personal address.</p>

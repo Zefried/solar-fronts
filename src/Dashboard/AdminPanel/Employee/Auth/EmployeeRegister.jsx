@@ -41,11 +41,13 @@ const EmployeeRegister = () => {
       });
 
       if (res.data?.status === 200) {
+        console.log(res.data);
         alert(res.data.message || 'Registration successful');
         AuthAction.updateState({
           isAuthenticated: true,
           name: res.data.data?.name,
-          token: res.data.token
+          token: res.data.token,
+          role:res.data.data.role,
         });
         navigate('/employee');
         return;
