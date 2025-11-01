@@ -21,6 +21,7 @@ import UserExtraInfo from "./Dashboard/EmployeePanel/Components/UserData/UserExt
 import ViewEmployee from "./Dashboard/AdminPanel/Components/ViewEmployee";
 import AddEmployee from "./Dashboard/AdminPanel/Components/AddEmployee";
 import ViewEmployeeUser from "./Dashboard/AdminPanel/Components/ViewEmployeeUser";
+import EmployeeDashboard from "./Dashboard/EmployeePanel/Components/EmployeeDashboard/EmployeeDashboard";
 
 
 
@@ -76,15 +77,18 @@ function App() {
             <Route path="view-employee" element={<ViewEmployee />} />
             <Route path="add-employee" element={<AddEmployee />} />  
             <Route path="user-list" element={<UserList/>} />
+            <Route path="employee-users" element={<ViewEmployeeUser/>} />
 
           </Route>
 
 
-
- <Route path="test" element={<ViewEmployeeUser/>} />
-
             
+        <Route
+          path="test"
+          element={<EmployeeDashboard/>}
+        />
 
+      
 
 
             
