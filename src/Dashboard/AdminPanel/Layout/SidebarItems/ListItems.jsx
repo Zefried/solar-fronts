@@ -154,7 +154,6 @@ const ListItems = () => {
        )
     }
 
-   
 
     if(role == 'employee'){
        EmployeePanel = (
@@ -236,55 +235,21 @@ const ListItems = () => {
                                 <path d="M10 9C11.6569 9 13 7.65685 13 6C13 4.34315 11.6569 3 10 3C8.34315 3 7 4.34315 7 6C7 7.65685 8.34315 9 10 9Z" stroke="#6B7280" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
                                 <path d="M4 17C4 14.2386 6.23858 12 9 12H11C13.7614 12 16 14.2386 16 17" stroke="#6B7280" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
                                 </svg>
-                                <span>View Documents</span>
+                                <span>Associated Users</span>
                                 <svg className={`sb-arrow ${isViewDocument ? 'rotate' : ''}`} width="16" height="16" viewBox="0 0 16 16" fill="none">
                                 <path d="M4 6L8 10L12 6" stroke="#6B7280" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
                                 </svg>
                             </button>
                             <ul className={`sb-submenu ${isViewDocument ? 'sb-submenu-open' : ''}`}>
                                 <li>
-                                    <Link to={'/client/view-docs'} className="sb-submenu-item">
+                                    <Link to={'/employee/user-list'} className="sb-submenu-item">
                                         {/* ID card icon */}
                                         <svg className="sb-submenu-icon" width="16" height="16" viewBox="0 0 24 24" fill="none">
                                         <rect x="3" y="5" width="18" height="14" rx="2" stroke="#6B7280" strokeWidth="1.5"/>
                                         <circle cx="8" cy="12" r="2" stroke="#6B7280" strokeWidth="1.5"/>
                                         <path d="M13 11h5M13 15h4" stroke="#6B7280" strokeWidth="1.5" strokeLinecap="round"/>
                                         </svg>
-                                        View ID Proofs
-                                    </Link>
-                                </li>
-
-                                <li>
-                                    <Link to={'/client/view-bank-info'} className="sb-submenu-item">
-                                        {/* Bank icon */}
-                                        <svg className="sb-submenu-icon" width="16" height="16" viewBox="0 0 24 24" fill="none">
-                                        <path d="M3 10h18L12 3 3 10z" stroke="#6B7280" strokeWidth="1.5" strokeLinecap="round"/>
-                                        <path d="M4 10v10h16V10" stroke="#6B7280" strokeWidth="1.5"/>
-                                        <path d="M8 14h8M8 18h8" stroke="#6B7280" strokeWidth="1.5"/>
-                                        </svg>
-                                        View Bank Info
-                                    </Link>
-                                </li>
-
-                                <li>
-                                    <Link to={'/client/view-personal-info'} className="sb-submenu-item">
-                                        {/* User / Profile icon */}
-                                        <svg className="sb-submenu-icon" width="16" height="16" viewBox="0 0 24 24" fill="none">
-                                        <circle cx="12" cy="7" r="4" stroke="#6B7280" strokeWidth="1.5"/>
-                                        <path d="M5.5 21c0-3.6 3-6.5 6.5-6.5s6.5 2.9 6.5 6.5" stroke="#6B7280" strokeWidth="1.5" strokeLinecap="round"/>
-                                        </svg>
-                                        View Personal Info
-                                    </Link>
-                                </li>
-
-                                <li>
-                                    <Link to={'/client/view-extra-info'} className="sb-submenu-item">
-                                        {/* File / Document icon */}
-                                        <svg className="sb-submenu-icon" width="16" height="16" viewBox="0 0 24 24" fill="none">
-                                        <path d="M6 2h9l5 5v15H6V2z" stroke="#6B7280" strokeWidth="1.5" strokeLinejoin="round"/>
-                                        <path d="M9 12h6M9 16h6" stroke="#6B7280" strokeWidth="1.5" strokeLinecap="round"/>
-                                        </svg>
-                                        View Other Info
+                                       View Users
                                     </Link>
                                 </li>
 
@@ -375,55 +340,56 @@ const ListItems = () => {
                                 <path d="M10 9C11.6569 9 13 7.65685 13 6C13 4.34315 11.6569 3 10 3C8.34315 3 7 4.34315 7 6C7 7.65685 8.34315 9 10 9Z" stroke="#6B7280" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
                                 <path d="M4 17C4 14.2386 6.23858 12 9 12H11C13.7614 12 16 14.2386 16 17" stroke="#6B7280" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
                                 </svg>
-                                <span>View Documents</span>
+                                <span>Associated Users</span>
                                 <svg className={`sb-arrow ${isViewDocument ? 'rotate' : ''}`} width="16" height="16" viewBox="0 0 16 16" fill="none">
                                 <path d="M4 6L8 10L12 6" stroke="#6B7280" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
                                 </svg>
                             </button>
                             <ul className={`sb-submenu ${isViewDocument ? 'sb-submenu-open' : ''}`}>
                                 <li>
-                                    <Link to={'/client/view-docs'} className="sb-submenu-item">
+                                    <Link to={'/admin/user-list'} className="sb-submenu-item">
                                         {/* ID card icon */}
                                         <svg className="sb-submenu-icon" width="16" height="16" viewBox="0 0 24 24" fill="none">
                                         <rect x="3" y="5" width="18" height="14" rx="2" stroke="#6B7280" strokeWidth="1.5"/>
                                         <circle cx="8" cy="12" r="2" stroke="#6B7280" strokeWidth="1.5"/>
                                         <path d="M13 11h5M13 15h4" stroke="#6B7280" strokeWidth="1.5" strokeLinecap="round"/>
                                         </svg>
-                                        View ID Proofs
+                                       View Users
                                     </Link>
                                 </li>
 
                                 <li>
-                                    <Link to={'/client/view-bank-info'} className="sb-submenu-item">
-                                        {/* Bank icon */}
+                                    <Link to={'/admin/add-employee'} className="sb-submenu-item">
+                                        {/* ID card icon */}
                                         <svg className="sb-submenu-icon" width="16" height="16" viewBox="0 0 24 24" fill="none">
-                                        <path d="M3 10h18L12 3 3 10z" stroke="#6B7280" strokeWidth="1.5" strokeLinecap="round"/>
-                                        <path d="M4 10v10h16V10" stroke="#6B7280" strokeWidth="1.5"/>
-                                        <path d="M8 14h8M8 18h8" stroke="#6B7280" strokeWidth="1.5"/>
+                                        <rect x="3" y="5" width="18" height="14" rx="2" stroke="#6B7280" strokeWidth="1.5"/>
+                                        <circle cx="8" cy="12" r="2" stroke="#6B7280" strokeWidth="1.5"/>
+                                        <path d="M13 11h5M13 15h4" stroke="#6B7280" strokeWidth="1.5" strokeLinecap="round"/>
                                         </svg>
-                                        View Bank Info
+                                       Add Employee
                                     </Link>
                                 </li>
 
-                                <li>
-                                    <Link to={'/client/view-personal-info'} className="sb-submenu-item">
-                                        {/* User / Profile icon */}
+                                 <li>
+                                    <Link to={'/admin/view-employee'} className="sb-submenu-item">
+                                        {/* ID card icon */}
                                         <svg className="sb-submenu-icon" width="16" height="16" viewBox="0 0 24 24" fill="none">
-                                        <circle cx="12" cy="7" r="4" stroke="#6B7280" strokeWidth="1.5"/>
-                                        <path d="M5.5 21c0-3.6 3-6.5 6.5-6.5s6.5 2.9 6.5 6.5" stroke="#6B7280" strokeWidth="1.5" strokeLinecap="round"/>
+                                        <rect x="3" y="5" width="18" height="14" rx="2" stroke="#6B7280" strokeWidth="1.5"/>
+                                        <circle cx="8" cy="12" r="2" stroke="#6B7280" strokeWidth="1.5"/>
+                                        <path d="M13 11h5M13 15h4" stroke="#6B7280" strokeWidth="1.5" strokeLinecap="round"/>
                                         </svg>
-                                        View Personal Info
+                                       View Employee
                                     </Link>
                                 </li>
-
-                                <li>
-                                    <Link to={'/client/view-extra-info'} className="sb-submenu-item">
-                                        {/* File / Document icon */}
+                                 <li>
+                                    <Link to={'/test'} className="sb-submenu-item">
+                                        {/* ID card icon */}
                                         <svg className="sb-submenu-icon" width="16" height="16" viewBox="0 0 24 24" fill="none">
-                                        <path d="M6 2h9l5 5v15H6V2z" stroke="#6B7280" strokeWidth="1.5" strokeLinejoin="round"/>
-                                        <path d="M9 12h6M9 16h6" stroke="#6B7280" strokeWidth="1.5" strokeLinecap="round"/>
+                                        <rect x="3" y="5" width="18" height="14" rx="2" stroke="#6B7280" strokeWidth="1.5"/>
+                                        <circle cx="8" cy="12" r="2" stroke="#6B7280" strokeWidth="1.5"/>
+                                        <path d="M13 11h5M13 15h4" stroke="#6B7280" strokeWidth="1.5" strokeLinecap="round"/>
                                         </svg>
-                                        View Other Info
+                                       Employee User
                                     </Link>
                                 </li>
 
@@ -433,7 +399,6 @@ const ListItems = () => {
         </>
        )
     }
-
 
 
   return (      

@@ -3,7 +3,9 @@ import React, { useEffect, useState } from 'react';
 import { AuthAction } from '../../../../CustomStateManage/OrgUnits/AuthState';
 import './ViewBankInfo.css';
 
+
 const ViewBankInfo = () => {
+
     const [bankInfo, setBankInfo] = useState(null);
     const [loading, setLoading] = useState(true);
     const [isSaving, setIsSaving] = useState(false); // New state for saving
@@ -17,10 +19,8 @@ const ViewBankInfo = () => {
     useEffect(() => {
         const fetchBankInfo = async () => {
             try {
-                const res = await axios.get('/api/user/bank-info/fetch',{
-                    headers:{
-                        Authorization: `Bearer ${token}`
-                    }
+                const res = await axios.get(`/api/user/bank-info/fetch`, {
+                    headers: { Authorization: `Bearer ${token}` }
                 });
 
                 if(res.data.status === 422){

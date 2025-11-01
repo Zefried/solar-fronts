@@ -2,12 +2,8 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import AdminLogin from "./Dashboard/AdminPanel/Compo/Auth/AdminLogin";
 import AdminRegister from "./Dashboard/AdminPanel/Compo/Auth/AdminRegister";
 import AdminHome from "./Dashboard/AdminPanel/Layout/AdminHome/AdminHome";
-import DocumentUploadForm from "./Dashboard/ClientPanel/Test/Document";
 import UserRegister from "./Dashboard/ClientPanel/Auth/ClientRegister";
 import EmployeeRegister from "./Dashboard/AdminPanel/Employee/Auth/EmployeeRegister";
-import PersonalInfo from "./Dashboard/ClientPanel/Test/PersonalInfo";
-import BankInfo from "./Dashboard/ClientPanel/Test/BankInfo";
-import Extrainfo from "./Dashboard/ClientPanel/Test/ExtraInfo";
 import UploadDocs from "./Dashboard/ClientPanel/Components/UploadDocs/UploadDoc";
 import AddPersonalInfo from "./Dashboard/ClientPanel/Components/AddPersonalInfo/AddPersonalInfo";
 import AddBankInfos from "./Dashboard/ClientPanel/Components/AddBankInfo/AddBankInfo";
@@ -17,8 +13,14 @@ import ViewDocs from "./Dashboard/ClientPanel/Components/ViewDocs/ViewDocs";
 import ViewPersonalInfo from "./Dashboard/ClientPanel/Components/ViewPersonalInfo/ViewPersonalInfo";
 import ViewExtraInfo from "./Dashboard/ClientPanel/Components/ViewExtraInfo/ViewExtraInfo";
 import ClientDashboard from "./Dashboard/ClientPanel/Components/Dashboard/ClientDashboard";
-import FetchUser from "./Dashboard/EmployeePanel/Components/FetchUsers/FetchUser";
-import SearchEmployee from "./Dashboard/EmployeePanel/Components/FetchEmployee/FetchEmployee";
+import UserList from "./Dashboard/EmployeePanel/Components/UserList/UserList";
+import UserBankInfo from "./Dashboard/EmployeePanel/Components/UserData/UserBankInfo";
+import UserDocInfo from "./Dashboard/EmployeePanel/Components/UserData/UserDocInfo";
+import UserPersonalInfo from "./Dashboard/EmployeePanel/Components/UserData/UserPersonalInfo";
+import UserExtraInfo from "./Dashboard/EmployeePanel/Components/UserData/UserExtraInfo";
+import ViewEmployee from "./Dashboard/AdminPanel/Components/ViewEmployee";
+import AddEmployee from "./Dashboard/AdminPanel/Components/AddEmployee";
+import ViewEmployeeUser from "./Dashboard/AdminPanel/Components/ViewEmployeeUser";
 
 
 
@@ -37,14 +39,17 @@ function App() {
 
           <Route path="/login" element={<AdminLogin/>} />
         
-                <Route path="/test" element={<SearchEmployee/>} />
-          
-          
-          <Route path="/employee" element={<AdminHome />}>
-            
-            <Route index element={<ClientDashboard />} />  {/* default dashboard */}
          
-      
+
+          <Route path="/user-doc-info/:id" element={<UserDocInfo/>} />
+          <Route path="/user-bank-info/:id" element={<UserBankInfo/>} />
+          <Route path="/user-personal-info/:id" element={<UserPersonalInfo/>} />
+          <Route path="/user-extra-info/:id" element={<UserExtraInfo/>} />
+
+          <Route path="employee" element={<AdminHome />}>
+            <Route index element={<ClientDashboard />} />  {/* default dashboard */}
+            <Route path="user-list" element={<UserList/>} />
+
           </Route>
 
 
@@ -66,12 +71,19 @@ function App() {
           </Route>
 
           
+          <Route path="admin" element={<AdminHome />}>
+            <Route index element={<ClientDashboard />} />
+            <Route path="view-employee" element={<ViewEmployee />} />
+            <Route path="add-employee" element={<AddEmployee />} />  
+            <Route path="user-list" element={<UserList/>} />
 
-            <Route path="doc" element={<DocumentUploadForm/>} /> 
-            <Route path="personal-info" element={<PersonalInfo/>} />
-            <Route path="bank-info" element={<BankInfo/>} />
-            <Route path="extra-info" element={<Extrainfo/>} />
-            <Route path="test" element={<FetchUser/>} />
+          </Route>
+
+
+
+ <Route path="test" element={<ViewEmployeeUser/>} />
+
+            
 
 
 
