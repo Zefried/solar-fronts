@@ -1,48 +1,40 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { AuthAction } from '../../../../CustomStateManage/OrgUnits/AuthState';
-import { Link, useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import FetchUser from '../FetchUsers/FetchUser';
 
-const UserList = () => {
+const UserListReport = () => {
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(true);
   const { token } = AuthAction.getState('solar');
-  const { search } = useLocation();
 
-  // Get status from query string (?status=pending)
-  const status = new URLSearchParams(search).get('status') || 'all';
-
-  console.log('Status:', status);
   useEffect(() => {
-    const fetchUserList = async () => {
+    const fetchUserReport = async () => {
       try {
-        const res = await axios.post(
-          '/api/get/user/list',
-          { status },
-          { headers: { Authorization: `Bearer ${token}` } }
-        );
+        const res = await axios.get('/api/get/user/report', {
+          headers: { Authorization: `Bearer ${token}` },
+        });
         if (res.data?.status === 200) setUsers(res.data.data);
       } catch (error) {
-        console.error('Error fetching user list:', error);
+        console.error('Error fetching user report:', error);
       } finally {
         setLoading(false);
       }
     };
-
-    fetchUserList();
+    fetchUserReport();
 
     const handleUserSelected = (e) => setUsers([e.detail]);
     window.addEventListener('userSelected', handleUserSelected);
     return () => window.removeEventListener('userSelected', handleUserSelected);
-  }, [token, status]);
+  }, [token]);
 
   if (loading) return <p>Loading...</p>;
-  if (!users.length) return <p>No {status} users found.</p>;
+  if (!users.length) return <p>No user report data found.</p>;
 
   return (
     <div>
-      <h2>User List ({status})</h2>
+      <h2>User Report</h2>
       <FetchUser />
       <table border="1" cellPadding="10" style={{ borderCollapse: 'collapse', width: '100%' }}>
         <thead>
@@ -72,4 +64,4 @@ const UserList = () => {
   );
 };
 
-export default UserList;
+export default UserListReport;

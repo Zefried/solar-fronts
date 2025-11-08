@@ -40,7 +40,9 @@ const AdminLogin = () => {
           role: role  
         });
 
-        navigate('/admin');
+        navigate(role === 'admin' ? '/admin' : role === 'employee' ? '/employee' : '/');
+
+        // navigate('/admin');
       } else {
         alert(res.data?.message || 'Login failed');
       }

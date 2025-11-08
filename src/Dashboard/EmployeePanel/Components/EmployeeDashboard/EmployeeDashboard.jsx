@@ -14,18 +14,21 @@ const EmployeeDashboard = () => {
     useEffect(() => {
         const fetchReport = async () => {
             try {
-                const res = await axios.get('/api/employee/reports', {
-                    headers: { Authorization: `Bearer ${token}` }
-                });
-                setReport(res.data);
-            } catch (error) {
-                console.error('Error fetching report:', error);
+            const res = await axios.post('/api/employee/reports',
+                selectedDate ? { date: selectedDate.date } : {}, 
+                { headers: { Authorization: `Bearer ${token}` } }
+            );
+            setReport(res.data);
+            } catch (err) {
+            console.error('Error fetching report:', err);
             } finally {
-                setLoading(false);
+            setLoading(false);
             }
         };
         fetchReport();
-    }, [token]);
+    }, [token, selectedDate]);
+
+
 
     if (loading) return <p>Loading...</p>;
     if (!report) return <p>No report data found.</p>;
@@ -46,9 +49,13 @@ const EmployeeDashboard = () => {
     };
 
     const handleDateSelect = (data) => {
-        console.log('Received:', data);
         setSelectedDate(data);
     };
+
+    if(selectedDate){
+        console.log('x');
+    }
+
 
     return (
         <div style={{ padding: '20px' }}>
@@ -66,19 +73,19 @@ const EmployeeDashboard = () => {
             </div>
 
             <div style={{ display: 'flex', gap: '10px', marginTop: '20px' }}>
-                <div style={cardStyle} onClick={() => handleClick('/all-clients')}>
+                <div style={cardStyle} onClick={() => handleClick('/employee/user-list?status=all')}>
                     <h4>Total Clients</h4>
                     <p>{total_clients}</p>
-                </div>
-                <div style={cardStyle} onClick={() => handleClick('/pending-clients')}>
+                    </div>
+                    <div style={cardStyle} onClick={() => handleClick('/employee/user-list?status=pending')}>
                     <h4>Pending Clients</h4>
                     <p>{total_pending_clients}</p>
-                </div>
-                <div style={cardStyle} onClick={() => handleClick('/completed-clients')}>
+                    </div>
+                    <div style={cardStyle} onClick={() => handleClick('/employee/user-list?status=completed')}>
                     <h4>Completed Clients</h4>
                     <p>{total_completed_clients}</p>
-                </div>
-                <div style={cardStyle} onClick={() => handleClick('/active-clients')}>
+                    </div>
+                    <div style={cardStyle} onClick={() => handleClick('/employee/user-list?status=processing')}>
                     <h4>Active Clients</h4>
                     <p>{active_clients}</p>
                 </div>

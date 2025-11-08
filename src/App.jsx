@@ -22,6 +22,7 @@ import ViewEmployee from "./Dashboard/AdminPanel/Components/ViewEmployee";
 import AddEmployee from "./Dashboard/AdminPanel/Components/AddEmployee";
 import ViewEmployeeUser from "./Dashboard/AdminPanel/Components/ViewEmployeeUser";
 import EmployeeDashboard from "./Dashboard/EmployeePanel/Components/EmployeeDashboard/EmployeeDashboard";
+import UserListReport from "./Dashboard/EmployeePanel/Components/UserList/UserListReport";
 
 
 
@@ -47,14 +48,8 @@ function App() {
           <Route path="/user-personal-info/:id" element={<UserPersonalInfo/>} />
           <Route path="/user-extra-info/:id" element={<UserExtraInfo/>} />
 
-          <Route path="employee" element={<AdminHome />}>
-            <Route index element={<ClientDashboard />} />  {/* default dashboard */}
-            <Route path="user-list" element={<UserList/>} />
+          
 
-          </Route>
-
-
- 
           <Route path="/" element={<AdminHome />}>
 
             <Route index element={<ClientDashboard />} />  {/* default dashboard */}
@@ -83,10 +78,13 @@ function App() {
 
 
             
-        <Route
-          path="test"
-          element={<EmployeeDashboard/>}
-        />
+
+
+          <Route path="employee" element={<AdminHome />}>
+            <Route index element={<EmployeeDashboard />} />
+            <Route path="user-list" element={<UserList/>} />
+
+          </Route>
 
       
 
