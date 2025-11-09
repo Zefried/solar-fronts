@@ -8,7 +8,7 @@ const FetchUser = () => {
   const [users, setUsers] = useState([]);
   const [query, setQuery] = useState('');
   const [loading, setLoading] = useState(false);
-  const { token } = AuthAction.getState('solar');
+  const { token, role } = AuthAction.getState('solar');
 
   // Get status from URL: /employee/user-list?status=pending
   const { search } = useLocation();
@@ -18,9 +18,14 @@ const FetchUser = () => {
     if (!name.trim()) return setUsers([]);
     setLoading(true);
     try {
-      // Use POST to send both name and status
+      // Choose API based on role
+      const endpoint =
+        role === 'admin'
+          ? '/api/admin/search/users'
+          : '/api/employee/search/users';
+
       const res = await axios.post(
-        '/api/employee/search/users',
+        endpoint,
         { name, status },
         { headers: { Authorization: `Bearer ${token}` } }
       );

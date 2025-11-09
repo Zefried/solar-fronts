@@ -14,6 +14,7 @@ const UserList = () => {
   const status = new URLSearchParams(search).get('status') || 'all';
 
   console.log('Status:', status);
+  
   useEffect(() => {
     const fetchUserList = async () => {
       try {

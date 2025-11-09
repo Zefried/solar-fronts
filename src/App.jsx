@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useLocation, Navigate } from "react-router-dom";
 import AdminLogin from "./Dashboard/AdminPanel/Compo/Auth/AdminLogin";
 import AdminRegister from "./Dashboard/AdminPanel/Compo/Auth/AdminRegister";
 import AdminHome from "./Dashboard/AdminPanel/Layout/AdminHome/AdminHome";
@@ -23,79 +23,59 @@ import AddEmployee from "./Dashboard/AdminPanel/Components/AddEmployee";
 import ViewEmployeeUser from "./Dashboard/AdminPanel/Components/ViewEmployeeUser";
 import EmployeeDashboard from "./Dashboard/EmployeePanel/Components/EmployeeDashboard/EmployeeDashboard";
 import UserListReport from "./Dashboard/EmployeePanel/Components/UserList/UserListReport";
-
-
+import { AuthAction } from "./CustomStateManage/OrgUnits/AuthState";
+import AdminDashboard from "./Dashboard/AdminPanel/Components/AdminDashboard/AdminDashboard";
 
 
 
 function App() {
+  const { role } = AuthAction.getState("solar");
+
+  if (role === "employee" && window.location.pathname === "/") {
+    window.location.replace("/employee");
+  }
+
   return (
     <BrowserRouter>
+      <Routes>
+        <Route path="/admin-register" element={<AdminRegister />} />
+        <Route path="/user-register" element={<UserRegister />} />
+        <Route path="/employee-register" element={<EmployeeRegister />} />
+        <Route path="/login" element={<AdminLogin />} />
 
-         
-        <Routes>
+        <Route path="/user-doc-info/:id" element={<UserDocInfo />} />
+        <Route path="/user-bank-info/:id" element={<UserBankInfo />} />
+        <Route path="/user-personal-info/:id" element={<UserPersonalInfo />} />
+        <Route path="/user-extra-info/:id" element={<UserExtraInfo />} />
 
-          <Route path="/admin-register" element={<AdminRegister/>} />
-          <Route path="/user-register" element={<UserRegister/>} />
-          <Route path="/employee-register" element={<EmployeeRegister/>} />
+        <Route path="/" element={<AdminHome />}>
+          <Route index element={<ClientDashboard />} />
+          <Route path="/client/upload-documents" element={<UploadDocs />} />
+          <Route path="/client/add-personal-info" element={<AddPersonalInfo />} />
+          <Route path="/client/add-bank-info" element={<AddBankInfos />} />
+          <Route path="/client/add-extra-info" element={<AddExtrainfo />} />
+          <Route path="/client/view-bank-info" element={<ViewBankInfo />} />
+          <Route path="/client/view-docs" element={<ViewDocs />} />
+          <Route path="/client/view-personal-info" element={<ViewPersonalInfo />} />
+          <Route path="/client/view-extra-info" element={<ViewExtraInfo />} />
+        </Route>
 
-          <Route path="/login" element={<AdminLogin/>} />
-        
-         
+        <Route path="admin" element={<AdminHome />}>
+          <Route index element={<AdminDashboard />} />
+          <Route path="view-employee" element={<ViewEmployee />} />
+          <Route path="add-employee" element={<AddEmployee />} />
+          <Route path="user-list" element={<UserList />} />
+          <Route path="employee-users" element={<ViewEmployeeUser />} />
+        </Route>
 
-          <Route path="/user-doc-info/:id" element={<UserDocInfo/>} />
-          <Route path="/user-bank-info/:id" element={<UserBankInfo/>} />
-          <Route path="/user-personal-info/:id" element={<UserPersonalInfo/>} />
-          <Route path="/user-extra-info/:id" element={<UserExtraInfo/>} />
-
-          
-
-          <Route path="/" element={<AdminHome />}>
-
-            <Route index element={<ClientDashboard />} />  {/* default dashboard */}
-
-            <Route path="/client/upload-documents" element={<UploadDocs/>} />
-            <Route path="/client/add-personal-info" element={<AddPersonalInfo/>} />
-            <Route path="/client/add-bank-info" element={<AddBankInfos/>} />
-            <Route path="/client/add-extra-info" element={<AddExtrainfo/>} />
-
-            <Route path="/client/view-bank-info" element={<ViewBankInfo/>} />
-            <Route path="/client/view-docs" element={<ViewDocs/>} />
-            <Route path="/client/view-personal-info" element={<ViewPersonalInfo/>} />
-            <Route path="/client/view-extra-info" element={<ViewExtraInfo/>} />
-
-          </Route>
-
-          
-          <Route path="admin" element={<AdminHome />}>
-            <Route index element={<ClientDashboard />} />
-            <Route path="view-employee" element={<ViewEmployee />} />
-            <Route path="add-employee" element={<AddEmployee />} />  
-            <Route path="user-list" element={<UserList/>} />
-            <Route path="employee-users" element={<ViewEmployeeUser/>} />
-
-          </Route>
-
-
-            
-
-
-          <Route path="employee" element={<AdminHome />}>
-            <Route index element={<EmployeeDashboard />} />
-            <Route path="user-list" element={<UserList/>} />
-
-          </Route>
-
-      
-
-
-            
-
-
+        <Route path="employee" element={<AdminHome />}>
+          <Route index element={<EmployeeDashboard />} />
+          <Route path="user-list" element={<UserList />} />
+        </Route>
       </Routes>
-      
     </BrowserRouter>
   );
 }
 
 export default App;
+
