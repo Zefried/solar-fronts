@@ -10,10 +10,9 @@
   overflow: visible; /* Allow dropdown to show */
 }
 
-.fu-select {
+.fu-search-input {
   width: 100%;
   padding: 12px 16px;
-  padding-right: 45px;
   font-size: 1rem;
   font-weight: 500;
   color: #2d3748;
@@ -21,43 +20,22 @@
   border: 1px solid #e2e8f0;
   border-radius: 10px;
   outline: none;
-  cursor: pointer;
-  appearance: none;
   transition: all 0.3s ease;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
   box-sizing: border-box;
-  /* Ensure the select doesn't cause overflow */
+  /* Ensure the input doesn't cause overflow */
   max-width: 100%;
   min-width: 0; /* Allows shrinking */
 }
 
-.fu-select:hover {
+.fu-search-input:hover {
   border-color: #cbd5e0;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
 }
 
-.fu-select:focus {
+.fu-search-input:focus {
   border-color: #38b2ac;
   box-shadow: 0 0 0 3px rgba(56, 178, 172, 0.1);
-}
-
-.fu-select-icon {
-  position: absolute;
-  top: 50%;
-  right: 15px;
-  transform: translateY(-50%);
-  pointer-events: none;
-  color: #718096;
-  transition: color 0.3s ease;
-  z-index: 1; /* Ensure icon stays above select */
-}
-
-.fu-select-container:hover .fu-select-icon {
-  color: #4a5568;
-}
-
-.fu-select-container:focus-within .fu-select-icon {
-  color: #38b2ac;
 }
 
 /* Loading state */
@@ -78,14 +56,58 @@
 }
 
 .fu-loading-text {
-  display: inline-block;
-  vertical-align: middle;
+  display: block;
+  padding: 8px 16px;
   color: #718096;
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+/* User list dropdown */
+.fu-user-list {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  max-height: 300px;
+  overflow-y: auto;
+  margin-top: 5px;
+  background-color: #fff;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  z-index: 10;
+  list-style: none;
+  padding: 0;
+}
+
+.fu-user-item {
+  padding: 12px 16px;
   font-size: 1rem;
+  color: #2d3748;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.fu-user-item:hover {
+  background-color: #f7fafc;
+}
+
+.fu-user-item:first-child {
+  border-radius: 10px 10px 0 0;
+}
+
+.fu-user-item:last-child {
+  border-radius: 0 0 10px 10px;
 }
 
 /* No users state */
 .fu-no-users {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  margin-top: 5px;
   padding: 12px 16px;
   font-size: 1rem;
   color: #718096;
@@ -95,39 +117,41 @@
   text-align: left;
   font-style: italic;
   box-sizing: border-box;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  z-index: 10;
 }
 
 /* Dark mode support */
-body.dark-mode .fu-select {
+body.dark-mode .fu-search-input {
   background-color: #2d2d2d;
   color: #f9fafb;
   border-color: #4b5563;
 }
 
-body.dark-mode .fu-select:hover {
+body.dark-mode .fu-search-input:hover {
   border-color: #6b7280;
 }
 
-body.dark-mode .fu-select:focus {
+body.dark-mode .fu-search-input:focus {
   border-color: #38b2ac;
 }
 
-body.dark-mode .fu-select-icon {
-  color: #9ca3af;
+body.dark-mode .fu-user-list,
+body.dark-mode .fu-no-users {
+  background-color: #2d2d2d;
+  border-color: #4b5563;
 }
 
-body.dark-mode .fu-select-container:hover .fu-select-icon {
-  color: #d1d5db;
+body.dark-mode .fu-user-item {
+  color: #f9fafb;
 }
 
-body.dark-mode .fu-select-container:focus-within .fu-select-icon {
-  color: #38b2ac;
+body.dark-mode .fu-user-item:hover {
+  background-color: #374151;
 }
 
 body.dark-mode .fu-no-users {
-  background-color: #2d2d2d;
   color: #9ca3af;
-  border-color: #4b5563;
 }
 
 /* Improved responsive adjustments */
@@ -140,34 +164,23 @@ body.dark-mode .fu-no-users {
     overflow: visible;
   }
   
-  .fu-select {
+  .fu-search-input {
     font-size: 16px; /* Prevent iOS zoom on focus */
     padding: 14px 16px;
-    padding-right: 45px;
     /* Critical fixes for mobile dropdown */
     max-width: 100%;
     min-width: 0;
     width: 100%;
-    /* Prevent text overflow in options */
+    /* Prevent text overflow */
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
   }
   
-  /* Style the dropdown options */
-  .fu-select option {
-    /* Ensure options don't cause overflow */
+  .fu-user-list,
+  .fu-no-users {
     max-width: 100%;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    overflow: hidden;
-    padding: 10px;
-    /* Make sure options are readable */
-    font-size: 16px;
-  }
-  
-  .fu-select-icon {
-    right: 16px;
+    width: 100%;
   }
   
   .fu-no-users {
@@ -178,17 +191,6 @@ body.dark-mode .fu-no-users {
 
 /* Extra small screens */
 @media (max-width: 480px) {
-    /* Style the dropdown options */
-  .fu-select option {
-    /* Ensure options don't cause overflow */
-    max-width: 60%;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    overflow: hidden;
-    padding: 10px;
-    /* Make sure options are readable */
-    font-size: 16px;
-  }
   .fu-select-container {
     margin: 20px 0;
     /* Ensure container stays within bounds */
@@ -197,31 +199,22 @@ body.dark-mode .fu-no-users {
     right: 0;
   }
   
-  .fu-select, .fu-no-users {
+  .fu-search-input,
+  .fu-user-list,
+  .fu-no-users {
     border-radius: 8px;
   }
   
-  .fu-select {
+  .fu-search-input {
     /* Additional constraints for very small screens */
     max-width: calc(100vw - 40px); /* Account for body padding */
   }
 }
 
-/* Fix for select dropdown positioning */
-select.fu-select {
-  /* Prevent dropdown from going off-screen */
-  position: relative;
-}
-
 /* iOS Safari specific fix */
 @supports (-webkit-touch-callout: none) {
-  .fu-select {
+  .fu-search-input {
     /* Increase touch target size for iOS */
     padding: 16px;
-    padding-right: 50px;
-  }
-  
-  .fu-select-icon {
-    right: 18px;
   }
 }

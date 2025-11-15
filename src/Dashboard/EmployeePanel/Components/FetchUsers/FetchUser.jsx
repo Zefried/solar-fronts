@@ -39,6 +39,8 @@ const FetchUser = () => {
     }
   };
 
+  console.log(users);
+
   const handleSelectUser = (user) => {
     AuthAction.updateState({
       selectedClient: { id: user.id, name: user.name },

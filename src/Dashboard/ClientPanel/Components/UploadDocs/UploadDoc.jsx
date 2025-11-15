@@ -5,7 +5,7 @@ import { AuthAction } from '../../../../CustomStateManage/OrgUnits/AuthState';
 import FetchUser from '../../../EmployeePanel/Components/FetchUsers/FetchUser';
 
 const UploadDocs = () => {
-    const { token } = AuthAction.getState('solar');
+    const { token, role } = AuthAction.getState('solar');
     const [loading, setLoading] = useState(false);
     const [selectedUser, setSelectedUser] = useState(null);
 
@@ -93,8 +93,9 @@ const UploadDocs = () => {
                 <p>Please upload the required documents to complete your verification process</p>
             </div>
 
-            <FetchUser/>
+            {role !== "user" && <FetchUser />}
 
+            
             {
                 selectedUser && (<div className="ud-selected-user-info">
                    Selected User: <strong>{selectedUser.name} </strong>  Upload documents for this user.

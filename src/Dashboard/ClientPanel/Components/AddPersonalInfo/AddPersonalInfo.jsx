@@ -5,7 +5,7 @@ import { AuthAction } from '../../../../CustomStateManage/OrgUnits/AuthState';
 import FetchUser from '../../../EmployeePanel/Components/FetchUsers/FetchUser';
 
 const AddPersonalInfo = () => {
-
+    const {role} = AuthAction.getState('solar')
     const [selectedUser, setSelectedUser] = useState(null);
 
     const [formData, setFormData] = useState({
@@ -78,7 +78,7 @@ const AddPersonalInfo = () => {
                 <p>Please provide your personal details to complete your profile</p>
             </div>
 
-            <FetchUser/>
+            {role !== "user" && <FetchUser />}
             {
                 selectedUser && (<div className="ud-selected-user-info">
                    Selected User: <strong>{selectedUser.name} </strong>  Upload documents for this user.

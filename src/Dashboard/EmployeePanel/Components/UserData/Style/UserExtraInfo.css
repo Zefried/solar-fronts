@@ -1,0 +1,281 @@
+/* UserExtraInfo Component Styles with uei- prefix */
+
+.uei-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 24px;
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  box-sizing: border-box;
+}
+
+.uei-header {
+  font-size: 1.75rem;
+  font-weight: 600;
+  color: #2d3748;
+  margin-bottom: 24px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.uei-field-container {
+  margin-bottom: 20px;
+  padding: 16px;
+  background-color: #f7fafc;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+}
+
+.uei-field-container:hover {
+  background-color: #edf2f7;
+}
+
+.uei-field-label {
+  display: block;
+  font-weight: 600;
+  color: #4a5568;
+  margin-bottom: 8px;
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.uei-field-value {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 40px;
+}
+
+.uei-field-text {
+  font-size: 1rem;
+  color: #2d3748;
+  word-break: break-word;
+  flex-grow: 1;
+}
+
+.uei-field-input {
+  width: 100%;
+  padding: 10px 12px;
+  font-size: 1rem;
+  color: #2d3748;
+  background-color: #fff;
+  border: 1px solid #cbd5e0;
+  border-radius: 6px;
+  outline: none;
+  transition: all 0.2s ease;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.uei-field-input:focus {
+  border-color: #38b2ac;
+  box-shadow: 0 0 0 3px rgba(56, 178, 172, 0.1);
+}
+
+.uei-edit-button {
+  background: none;
+  border: none;
+  color: #718096;
+  cursor: pointer;
+  padding: 6px;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 8px;
+  flex-shrink: 0;
+}
+
+.uei-edit-button:hover {
+  color: #38b2ac;
+  background-color: rgba(56, 178, 172, 0.1);
+}
+
+.uei-edit-button svg {
+  width: 18px;
+  height: 18px;
+}
+
+.uei-save-button {
+  display: inline-block;
+  padding: 10px 20px;
+  margin-top: 16px;
+  background-color: #38b2ac;
+  color: white;
+  font-weight: 600;
+  text-align: center;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.uei-save-button:hover {
+  background-color: #319795;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.uei-save-button:active {
+  transform: translateY(1px);
+}
+
+/* Loading and Empty States */
+.uei-loading, .uei-empty {
+  padding: 40px 20px;
+  text-align: center;
+  font-size: 1.1rem;
+  color: #718096;
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.uei-loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+.uei-loading-spinner {
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  border: 3px solid rgba(0, 0, 0, 0.1);
+  border-radius: 50%;
+  border-top-color: #38b2ac;
+  animation: uei-spin 1s linear infinite;
+}
+
+@keyframes uei-spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Dark mode support */
+body.dark-mode .uei-container {
+  background-color: #2d2d2d;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+body.dark-mode .uei-header {
+  color: #f9fafb;
+  border-bottom-color: #4b5563;
+}
+
+body.dark-mode .uei-field-container {
+  background-color: #374151;
+}
+
+body.dark-mode .uei-field-container:hover {
+  background-color: #4b5563;
+}
+
+body.dark-mode .uei-field-label {
+  color: #d1d5db;
+}
+
+body.dark-mode .uei-field-text {
+  color: #f9fafb;
+}
+
+body.dark-mode .uei-field-input {
+  background-color: #2d2d2d;
+  color: #f9fafb;
+  border-color: #4b5563;
+}
+
+body.dark-mode .uei-field-input:focus {
+  border-color: #38b2ac;
+}
+
+body.dark-mode .uei-edit-button {
+  color: #9ca3af;
+}
+
+body.dark-mode .uei-edit-button:hover {
+  color: #4fd1c5;
+  background-color: rgba(79, 209, 197, 0.1);
+}
+
+body.dark-mode .uei-save-button {
+  background-color: #4fd1c5;
+  color: #1a202c;
+}
+
+body.dark-mode .uei-save-button:hover {
+  background-color: #38b2ac;
+}
+
+body.dark-mode .uei-loading, 
+body.dark-mode .uei-empty {
+  background-color: #2d2d2d;
+  color: #d1d5db;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .uei-container {
+    padding: 16px;
+    margin: 0 16px;
+  }
+  
+  .uei-header {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+  }
+  
+  .uei-field-container {
+    padding: 12px;
+    margin-bottom: 16px;
+  }
+  
+  .uei-field-input {
+    padding: 8px 10px;
+    font-size: 0.95rem;
+  }
+  
+  .uei-save-button {
+    padding: 8px 16px;
+    font-size: 0.95rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .uei-container {
+    padding: 12px;
+    margin: 0 12px;
+  }
+  
+  .uei-header {
+    font-size: 1.25rem;
+    margin-bottom: 16px;
+  }
+  
+  .uei-field-container {
+    padding: 10px;
+    margin-bottom: 12px;
+  }
+  
+  .uei-field-label {
+    font-size: 0.8rem;
+  }
+  
+  .uei-field-text {
+    font-size: 0.9rem;
+  }
+  
+  .uei-field-input {
+    padding: 8px;
+    font-size: 0.9rem;
+  }
+  
+  .uei-save-button {
+    width: 100%;
+    padding: 10px;
+    font-size: 0.95rem;
+  }
+}

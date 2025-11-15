@@ -6,7 +6,7 @@ import FetchUser from '../../../EmployeePanel/Components/FetchUsers/FetchUser';
 
 const AddExtrainfo = () => {
     
-    const { token } = AuthAction.getState('solar');
+    const { role } = AuthAction.getState('solar');
     const [formData, setFormData] = useState({
         installation_address: false,
         village: '',
@@ -77,7 +77,7 @@ const AddExtrainfo = () => {
                 <p>Please provide additional information about your solar installation</p>
             </div>
 
-            <FetchUser/>
+            {role !== "user" && <FetchUser />}
 
             {
                 selectedUser && (<div className="ud-selected-user-info">

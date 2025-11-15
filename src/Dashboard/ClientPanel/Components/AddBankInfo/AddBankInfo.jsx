@@ -86,7 +86,7 @@ const AddBankInfos = () => {
 
 
                     {/* Pass down state + setter */}
-                    <FetchUser/>
+                    {role !== "user" && <FetchUser />}
 
                     {
                         selectedUser && (<div className="ud-selected-user-info">

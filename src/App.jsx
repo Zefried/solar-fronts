@@ -38,15 +38,13 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
+        
         <Route path="/admin-register" element={<AdminRegister />} />
         <Route path="/user-register" element={<UserRegister />} />
         <Route path="/employee-register" element={<EmployeeRegister />} />
         <Route path="/login" element={<AdminLogin />} />
 
-        <Route path="/user-doc-info/:id" element={<UserDocInfo />} />
-        <Route path="/user-bank-info/:id" element={<UserBankInfo />} />
-        <Route path="/user-personal-info/:id" element={<UserPersonalInfo />} />
-        <Route path="/user-extra-info/:id" element={<UserExtraInfo />} />
+      
 
         <Route path="/" element={<AdminHome />}>
           <Route index element={<ClientDashboard />} />
@@ -71,7 +69,13 @@ function App() {
         <Route path="employee" element={<AdminHome />}>
           <Route index element={<EmployeeDashboard />} />
           <Route path="user-list" element={<UserList />} />
+
+          <Route path="user-doc-info/:id" element={<UserDocInfo />} />
+          <Route path="user-bank-info/:id" element={<UserBankInfo />} />
+          <Route path="user-personal-info/:id" element={<UserPersonalInfo />} />
+          <Route path="user-extra-info/:id" element={<UserExtraInfo />} />
         </Route>
+
       </Routes>
     </BrowserRouter>
   );

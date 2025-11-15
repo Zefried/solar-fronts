@@ -1,0 +1,408 @@
+/* UserDocInfo Component Styles with udi- prefix */
+
+.udi-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 24px;
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  box-sizing: border-box;
+}
+
+.udi-header {
+  font-size: 1.75rem;
+  font-weight: 600;
+  color: #2d3748;
+  margin-bottom: 24px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.udi-field-container {
+  margin-bottom: 20px;
+  padding: 16px;
+  background-color: #f7fafc;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+}
+
+.udi-field-container:hover {
+  background-color: #edf2f7;
+}
+
+.udi-field-label {
+  display: block;
+  font-weight: 600;
+  color: #4a5568;
+  margin-bottom: 12px;
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.udi-field-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.udi-field-value {
+  font-size: 1rem;
+  color: #2d3748;
+  word-break: break-word;
+  flex-grow: 1;
+}
+
+.udi-field-input {
+  width: 100%;
+  padding: 10px 12px;
+  font-size: 1rem;
+  color: #2d3748;
+  background-color: #fff;
+  border: 1px solid #cbd5e0;
+  border-radius: 6px;
+  outline: none;
+  transition: all 0.2s ease;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.udi-field-input:focus {
+  border-color: #38b2ac;
+  box-shadow: 0 0 0 3px rgba(56, 178, 172, 0.1);
+}
+
+.udi-edit-button {
+  background: none;
+  border: none;
+  color: #718096;
+  cursor: pointer;
+  padding: 6px;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.udi-edit-button:hover {
+  color: #38b2ac;
+  background-color: rgba(56, 178, 172, 0.1);
+}
+
+.udi-edit-button svg {
+  width: 18px;
+  height: 18px;
+}
+
+.udi-file-preview {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.udi-image-preview {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 6px;
+  border: 1px solid #e2e8f0;
+}
+
+.udi-file-icon {
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #edf2f7;
+  border-radius: 6px;
+  color: #718096;
+  font-size: 1.5rem;
+}
+
+.udi-file-name {
+  font-size: 0.9rem;
+  color: #4a5568;
+  max-width: 200px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.udi-file-actions {
+  display: flex;
+  gap: 8px;
+  margin-left: auto;
+}
+
+.udi-action-button {
+  padding: 6px 12px;
+  background-color: #edf2f7;
+  color: #4a5568;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.udi-action-button:hover {
+  background-color: #e2e8f0;
+  color: #2d3748;
+}
+
+.udi-action-button.download {
+  background-color: #ebf8ff;
+  color: #3182ce;
+}
+
+.udi-action-button.download:hover {
+  background-color: #bee3f8;
+  color: #2c5282;
+}
+
+.udi-save-button {
+  display: inline-block;
+  padding: 10px 20px;
+  margin-top: 16px;
+  background-color: #38b2ac;
+  color: white;
+  font-weight: 600;
+  text-align: center;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.udi-save-button:hover {
+  background-color: #319795;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.udi-save-button:active {
+  transform: translateY(1px);
+}
+
+/* Loading and Empty States */
+.udi-loading, .udi-empty {
+  padding: 40px 20px;
+  text-align: center;
+  font-size: 1.1rem;
+  color: #718096;
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.udi-loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+.udi-loading-spinner {
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  border: 3px solid rgba(0, 0, 0, 0.1);
+  border-radius: 50%;
+  border-top-color: #38b2ac;
+  animation: udi-spin 1s linear infinite;
+}
+
+@keyframes udi-spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Dark mode support */
+body.dark-mode .udi-container {
+  background-color: #2d2d2d;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+body.dark-mode .udi-header {
+  color: #f9fafb;
+  border-bottom-color: #4b5563;
+}
+
+body.dark-mode .udi-field-container {
+  background-color: #374151;
+}
+
+body.dark-mode .udi-field-container:hover {
+  background-color: #4b5563;
+}
+
+body.dark-mode .udi-field-label {
+  color: #d1d5db;
+}
+
+body.dark-mode .udi-field-value {
+  color: #f9fafb;
+}
+
+body.dark-mode .udi-field-input {
+  background-color: #2d2d2d;
+  color: #f9fafb;
+  border-color: #4b5563;
+}
+
+body.dark-mode .udi-field-input:focus {
+  border-color: #38b2ac;
+}
+
+body.dark-mode .udi-edit-button {
+  color: #9ca3af;
+}
+
+body.dark-mode .udi-edit-button:hover {
+  color: #4fd1c5;
+  background-color: rgba(79, 209, 197, 0.1);
+}
+
+body.dark-mode .udi-file-icon {
+  background-color: #4b5563;
+  color: #d1d5db;
+}
+
+body.dark-mode .udi-file-name {
+  color: #d1d5db;
+}
+
+body.dark-mode .udi-action-button {
+  background-color: #4b5563;
+  color: #d1d5db;
+}
+
+body.dark-mode .udi-action-button:hover {
+  background-color: #6b7280;
+  color: #f9fafb;
+}
+
+body.dark-mode .udi-action-button.download {
+  background-color: #1e3a5f;
+  color: #90cdf4;
+}
+
+body.dark-mode .udi-action-button.download:hover {
+  background-color: #2c5282;
+  color: #bee3f8;
+}
+
+body.dark-mode .udi-save-button {
+  background-color: #4fd1c5;
+  color: #1a202c;
+}
+
+body.dark-mode .udi-save-button:hover {
+  background-color: #38b2ac;
+}
+
+body.dark-mode .udi-loading, 
+body.dark-mode .udi-empty {
+  background-color: #2d2d2d;
+  color: #d1d5db;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .udi-container {
+    padding: 16px;
+    margin: 0 16px;
+  }
+  
+  .udi-header {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+  }
+  
+  .udi-field-container {
+    padding: 12px;
+    margin-bottom: 16px;
+  }
+  
+  .udi-field-input {
+    padding: 8px 10px;
+    font-size: 0.95rem;
+  }
+  
+  .udi-file-preview {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .udi-file-actions {
+    margin-left: 0;
+    margin-top: 8px;
+    width: 100%;
+    justify-content: flex-end;
+  }
+  
+  .udi-save-button {
+    padding: 8px 16px;
+    font-size: 0.95rem;
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .udi-container {
+    padding: 12px;
+    margin: 0 12px;
+  }
+  
+  .udi-header {
+    font-size: 1.25rem;
+    margin-bottom: 16px;
+  }
+  
+  .udi-field-container {
+    padding: 10px;
+    margin-bottom: 12px;
+  }
+  
+  .udi-field-label {
+    font-size: 0.8rem;
+  }
+  
+  .udi-field-value {
+    font-size: 0.9rem;
+  }
+  
+  .udi-field-input {
+    padding: 8px;
+    font-size: 0.9rem;
+  }
+  
+  .udi-image-preview {
+    width: 50px;
+    height: 50px;
+  }
+  
+  .udi-file-icon {
+    width: 50px;
+    height: 50px;
+    font-size: 1.25rem;
+  }
+  
+  .udi-action-button {
+    padding: 4px 8px;
+    font-size: 0.8rem;
+  }
+  
+  .udi-save-button {
+    padding: 10px;
+    font-size: 0.95rem;
+  }
+}
