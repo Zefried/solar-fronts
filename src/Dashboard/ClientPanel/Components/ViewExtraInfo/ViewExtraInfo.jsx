@@ -118,17 +118,33 @@ const ViewExtraInfo = () => {
                         <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
                         <polyline points="9 22 9 12 15 12 15 22"></polyline>
                     </svg>
-                    Installation Details
+                    Installation Address
                 </div>
                 
-                {renderEditableField('Installation Address', 'installation_address')}
+                {renderEditableField('Installation Address Same as Personal', 'installation_address')}
                 {renderEditableField('Village', 'village')}
                 {renderEditableField('Landmark', 'landmark')}
                 {renderEditableField('District', 'district')}
                 {renderEditableField('Pincode', 'pincode')}
                 {renderEditableField('State', 'state')}
-                {renderEditableField('Proposed Capacity', 'proposed_capacity')}
+            </div>
+            
+            <div className="ei-form-section">
+                <div className="ei-form-section-title">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                    </svg>
+                    Installation Details
+                </div>
+                
+                {renderEditableField('Proposed Capacity (kW)', 'proposed_capacity')}
                 {renderEditableField('Plot Type', 'plot_type')}
+                {renderEditableField('Consumer Category', 'consumer_category')}
+                {renderEditableField('Building Type', 'building_type')}
+                {renderEditableField('Installation Roof', 'installation_roof')}
+                {renderEditableField('Installation Floor', 'installation_floor')}
+                {renderEditableField('SM RT Distance', 'sm_rt_dist')}
+                {renderEditableField('Connection Phase', 'connection_phase')}
                 
                 <div className="ei-info-card">
                     <p><strong>Note:</strong> Please ensure all installation details are accurate to avoid delays in processing your application.</p>

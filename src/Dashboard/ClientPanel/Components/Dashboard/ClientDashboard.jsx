@@ -49,15 +49,24 @@ const ClientDashboard = () => {
         const documents = data.documents?.[0] || {};
         const extraInfo = data.extraInfo?.[0] || {};
         
-        // Check if installation details are complete
-        const hasInstallationDetails = extraInfo.installation_address && 
+        // Check if installation details are complete - includes ALL old and new fields
+        const hasInstallationDetails = extraInfo.installation_address !== undefined && 
                                       extraInfo.village && 
+                                      extraInfo.landmark &&
                                       extraInfo.district && 
+                                      extraInfo.pincode &&
                                       extraInfo.state && 
                                       extraInfo.proposed_capacity && 
-                                      extraInfo.plot_type;
+                                      extraInfo.plot_type &&
+                                      // NEW FIELDS
+                                      extraInfo.consumer_category &&
+                                      extraInfo.building_type &&
+                                      extraInfo.installation_roof &&
+                                      extraInfo.installation_floor &&
+                                      extraInfo.sm_rt_dist !== undefined &&
+                                      extraInfo.connection_phase;
         
-        // FIXED: Now checking both account number AND account holder name
+        // Check both account number AND account holder name
         const hasBankDetails = !!(bankInfo.account_number && bankInfo.account_holder_name);
         
         setUiData({
@@ -279,7 +288,6 @@ const ClientDashboard = () => {
                             <React.Fragment key={bank.id}>
                                 <div className="detail-item">
                                     <span className="detail-label">Account Holder:</span>
-                                    {/* FIXED: Handle null account holder name */}
                                     <span className="detail-value">{bank.account_holder_name || 'Not provided'}</span>
                                 </div>
                                 <div className="detail-item">
@@ -363,7 +371,7 @@ const ClientDashboard = () => {
                     </div>
                 </div>
                 
-                {/* Installation Details Card */}
+                {/* Installation Details Card - ALL OLD + NEW FIELDS */}
                 <div className={`status-card ${installationStatus.completed ? 'completed' : 'pending'}`}>
                     <div className="card-icon">
                         {installationStatus.completed ? (
@@ -395,29 +403,64 @@ const ClientDashboard = () => {
                     <div className="card-details">
                         {extraInfo.map(extra => (
                             <React.Fragment key={extra.id}>
+                                {/* OLD FIELDS - All preserved */}
                                 <div className="detail-item">
                                     <span className="detail-label">Installation Address:</span>
-                                    <span className="detail-value">{extra.installation_address == 1 ? 'Same' : 'New'}</span>
+                                    <span className="detail-value">{extra.installation_address == 1 ? 'Same as Personal' : 'Different Address'}</span>
                                 </div>
                                 <div className="detail-item">
                                     <span className="detail-label">Village:</span>
-                                    <span className="detail-value">{extra.village}</span>
+                                    <span className="detail-value">{extra.village || 'N/A'}</span>
+                                </div>
+                                <div className="detail-item">
+                                    <span className="detail-label">Landmark:</span>
+                                    <span className="detail-value">{extra.landmark || 'N/A'}</span>
                                 </div>
                                 <div className="detail-item">
                                     <span className="detail-label">District:</span>
-                                    <span className="detail-value">{extra.district}</span>
+                                    <span className="detail-value">{extra.district || 'N/A'}</span>
+                                </div>
+                                <div className="detail-item">
+                                    <span className="detail-label">Pincode:</span>
+                                    <span className="detail-value">{extra.pincode || 'N/A'}</span>
                                 </div>
                                 <div className="detail-item">
                                     <span className="detail-label">State:</span>
-                                    <span className="detail-value">{extra.state}</span>
+                                    <span className="detail-value">{extra.state || 'N/A'}</span>
                                 </div>
                                 <div className="detail-item">
                                     <span className="detail-label">Proposed Capacity:</span>
-                                    <span className="detail-value">{extra.proposed_capacity}</span>
+                                    <span className="detail-value">{extra.proposed_capacity || 'N/A'} kW</span>
                                 </div>
                                 <div className="detail-item">
                                     <span className="detail-label">Plot Type:</span>
-                                    <span className="detail-value">{extra.plot_type}</span>
+                                    <span className="detail-value">{extra.plot_type || 'N/A'}</span>
+                                </div>
+                                
+                                {/* NEW FIELDS - Added below */}
+                                <div className="detail-item">
+                                    <span className="detail-label">Consumer Category:</span>
+                                    <span className="detail-value">{extra.consumer_category || 'N/A'}</span>
+                                </div>
+                                <div className="detail-item">
+                                    <span className="detail-label">Building Type:</span>
+                                    <span className="detail-value">{extra.building_type || 'N/A'}</span>
+                                </div>
+                                <div className="detail-item">
+                                    <span className="detail-label">Installation Roof:</span>
+                                    <span className="detail-value">{extra.installation_roof || 'N/A'}</span>
+                                </div>
+                                <div className="detail-item">
+                                    <span className="detail-label">Installation Floor:</span>
+                                    <span className="detail-value">{extra.installation_floor || 'N/A'}</span>
+                                </div>
+                                <div className="detail-item">
+                                    <span className="detail-label">SM RT Distance:</span>
+                                    <span className="detail-value">{extra.sm_rt_dist || 'N/A'}</span>
+                                </div>
+                                <div className="detail-item">
+                                    <span className="detail-label">Connection Phase:</span>
+                                    <span className="detail-value">{extra.connection_phase || 'N/A'}</span>
                                 </div>
                             </React.Fragment>
                         ))}

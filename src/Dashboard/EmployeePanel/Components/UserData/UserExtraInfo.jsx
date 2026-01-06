@@ -108,14 +108,27 @@ const UserExtraInfo = () => {
         <div className="uei-container">
             <h2 className="uei-header">Extra Information</h2>
             
-            {renderEditableField('Installation Address', 'installation_address')}
-            {renderEditableField('Village', 'village')}
-            {renderEditableField('Landmark', 'landmark')}
-            {renderEditableField('District', 'district')}
-            {renderEditableField('Pincode', 'pincode')}
-            {renderEditableField('State', 'state')}
-            {renderEditableField('Proposed Capacity', 'proposed_capacity')}
-            {renderEditableField('Plot Type', 'plot_type')}
+            <div className="uei-section">
+                <h3 className="uei-section-title">Installation Address</h3>
+                {renderEditableField('Installation Address', 'installation_address')}
+                {renderEditableField('Village', 'village')}
+                {renderEditableField('Landmark', 'landmark')}
+                {renderEditableField('District', 'district')}
+                {renderEditableField('Pincode', 'pincode')}
+                {renderEditableField('State', 'state')}
+            </div>
+            
+            <div className="uei-section">
+                <h3 className="uei-section-title">Installation Details</h3>
+                {renderEditableField('Proposed Capacity (kW)', 'proposed_capacity')}
+                {renderEditableField('Plot Type', 'plot_type')}
+                {renderEditableField('Consumer Category', 'consumer_category')}
+                {renderEditableField('Building Type', 'building_type')}
+                {renderEditableField('Installation Roof', 'installation_roof')}
+                {renderEditableField('Installation Floor', 'installation_floor')}
+                {renderEditableField('SM RT Distance', 'sm_rt_dist')}
+                {renderEditableField('Connection Phase', 'connection_phase')}
+            </div>
 
             <button className="uei-save-button" onClick={handleSaveChanges}>
                 Save Changes

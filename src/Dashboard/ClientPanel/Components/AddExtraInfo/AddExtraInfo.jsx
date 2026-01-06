@@ -16,6 +16,12 @@ const AddExtrainfo = () => {
         state: '',
         proposed_capacity: '',
         plot_type: '',
+        consumer_category: '',
+        building_type: '',
+        installation_roof: '',
+        installation_floor: '',
+        sm_rt_dist: '',
+        connection_phase: '',
     });
     
     const [selectedUser, setSelectedUser] = useState(null);
@@ -202,6 +208,74 @@ const AddExtrainfo = () => {
                             <option value="commercial">Commercial</option>
                         </select>
                     </div>
+                    
+                    <div className="ei-form-group">
+                        <label className="ei-form-label">Consumer Category</label>
+                        <input 
+                            name="consumer_category" 
+                            placeholder="Enter Consumer Category eg: DOMESTIC" 
+                            value={formData.consumer_category} 
+                            onChange={handleChange} 
+                            className="ei-text-input"
+                        />
+                    </div>
+                    
+                    <div className="ei-form-group">
+                        <label className="ei-form-label">Building Type</label>
+                        <input 
+                            name="building_type" 
+                            placeholder="Enter Building Type eg: RCC" 
+                            value={formData.building_type} 
+                            onChange={handleChange} 
+                            className="ei-text-input"
+                        />
+                    </div>
+                    
+                    <div className="ei-form-group">
+                        <label className="ei-form-label">Installation Roof</label>
+                        <input 
+                            name="installation_roof" 
+                            placeholder="Enter Installation Roof Details eg: TINPAT" 
+                            value={formData.installation_roof} 
+                            onChange={handleChange} 
+                            className="ei-text-input"
+                        />
+                    </div>
+                    
+                    <div className="ei-form-group">
+                        <label className="ei-form-label">Installation Floor</label>
+                        <input 
+                            name="installation_floor" 
+                            placeholder="Enter Installation Floor eg: 2nd Floor" 
+                            value={formData.installation_floor} 
+                            onChange={handleChange} 
+                            className="ei-text-input"
+                        />
+                    </div>
+                    
+                    <div className="ei-form-group">
+                        <label className="ei-form-label">SM RT Distance</label>
+                        <input 
+                            name="sm_rt_dist" 
+                            placeholder="Enter SM RT Distance eg: 15 meters" 
+                            value={formData.sm_rt_dist} 
+                            onChange={handleChange} 
+                            className="ei-text-input"
+                        />
+                    </div>
+                    
+                    <div className="ei-form-group">
+                        <label className="ei-form-label">Connection Phase</label>
+                        <input
+                            type="text"
+                            name="connection_phase"
+                            value={formData.connection_phase}
+                            onChange={handleChange}
+                            className="ei-text-input"
+                            placeholder="e.g. single / three"
+                        />
+                    </div>
+
                 </div>
                 
                 <button type="submit" className="ei-submit-button">Save Installation Details</button>

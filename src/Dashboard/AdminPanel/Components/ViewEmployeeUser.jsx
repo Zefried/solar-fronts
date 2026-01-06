@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { AuthAction } from '../../../CustomStateManage/OrgUnits/AuthState';
+import './ViewEmployeeUser.css';
 
 const ViewEmployeeUser = () => {
     const [employees, setEmployees] = useState([]);
@@ -8,6 +9,7 @@ const ViewEmployeeUser = () => {
     const [loading, setLoading] = useState(true);
     const { token } = AuthAction.getState('solar');
     const baseUrl = 'http://127.0.0.1:8000/';
+
 
     useEffect(() => {
         const fetchEmployees = async () => {

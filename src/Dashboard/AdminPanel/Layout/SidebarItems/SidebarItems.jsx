@@ -10,7 +10,7 @@ const SidebarItems = () => {
   
     const { role } = AuthAction.getState('solar');
 
-    const dashboardPath = role === 'employee' ? '/employee' : role === 'admin' ? '/admin' : '/';
+    const dashboardPath = role === 'employee' ? '/employee' : role === 'admin' ? '/admin' : role === "user" ? '/user' : '/';
 
   return (
     <nav className="sb-sidebar-nav">
@@ -23,7 +23,7 @@ const SidebarItems = () => {
               <path d="M13 12.5C13 11.6716 13.6716 11 14.5 11H15.5C16.3284 11 17 11.6716 17 12.5V15.5C17 16.3284 16.3284 17 15.5 17H14.5C13.6716 17 13 16.3284 13 15.5V12.5Z" stroke="#6B7280" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
             </svg>
             <span>User Dashboard</span>
-          </Link>
+          </Link> 
         </li>
 
         <ListItems />

@@ -20,10 +20,10 @@ const SidebarNew = ({ isOpen }) => {
       
       <div className="sb-sidebar-footer">
         <div className="sb-user-profile">
-          <div className="sb-user-avatar">JD</div>
+          <div className="sb-user-avatar">MHC</div>
           <div className="sb-user-info">
-            <div className="sb-user-name">John Doe</div>
-            <div className="sb-user-role">Administrator</div>
+    
+            <div className="sb-user-role">Welcome</div>
           </div>
         </div>
       </div>
